@@ -2,11 +2,21 @@ let result = 0;
 let input = 0;
 let input2 = 0;
 let oddeven = 0;
+let calchistory= [];
+
+function calcHistory(num1,operator,num2,res)
+{
+    calchistory.push(`${num1} ${operator} ${num2} = ${res}`);
+    let historytext = calchistory.join("\n")
+    document.getElementById("calcHistory").innerText = historytext;
+}
 
 function read()
 {
     input = document.getElementById("Input").value;
     input2 = document.getElementById("Input2").value;
+    input = input.replace(",", ".");
+    input2 = input2.replace(",", ".");
     input= Number.parseFloat(input);
     input2= Number.parseFloat(input2);
 }
@@ -54,6 +64,12 @@ function clearAll()
     result = 0;
 }
 
+function clearHistory()
+{
+    document.getElementById("calcHistory").innerText = "";
+    calchistory=[]
+}
+
 function add()
 {
     read()
@@ -61,6 +77,7 @@ function add()
     {
         result= input+ input2;
         document.getElementById("result").innerText = result;
+        calcHistory(input," + ", input2, result);
     }
     else
     {
@@ -74,6 +91,7 @@ function subtract()
     {
         result=input - input2;
         document.getElementById("result").innerText = result;
+        calcHistory(input," - ", input2, result);
     }
     else
     {
@@ -90,6 +108,7 @@ function divide()
         {
             result = input / input2;
             document.getElementById("result").innerText = result;
+            calcHistory(input," / ", input2, result);
         }
         else
         {
@@ -104,6 +123,7 @@ function multiply()
     {
         result = input * input2;
         document.getElementById("result").innerText = result;
+        calcHistory(input," * ", input2, result);
     }
     else
     {
@@ -118,12 +138,38 @@ function power()
     {
         result = input ** input2;
         document.getElementById("result").innerText = result;
+        calcHistory(input," ** ", input2, result);
     }
     else
     {
         return;
     }
 }
+
+function restDivision()
+{
+    read()
+    if (verify())
+    {
+        if (input2 != 0)
+        {
+            result = input % input2;
+            document.getElementById("result").innerText = result;
+            calcHistory(input," mod ", input2, result);
+        }
+        else
+        {
+            document.getElementById("result").innerText = "You can't divide by zero!";
+        }        
+
+    }
+    else
+    {
+        return;
+    }
+}
+
+
 
 function oddOreven()
 {
@@ -146,16 +192,3 @@ function oddOreven()
     
 }
 
-function restDivision()
-{
-    read()
-    if (verify())
-    {
-        result = input % input2;
-        document.getElementById("result").innerText = result;
-    }
-    else
-    {
-        return;
-    }
-}
