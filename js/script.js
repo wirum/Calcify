@@ -15,13 +15,24 @@ function verify()
 {
     if (isNaN(input) || isNaN(input2))
     {
-        document.getElementById("result").innerText = "You forgot an value.."
+        document.getElementById("result").innerText = "You forgot an value..";
         return false;
     }
     else
     {
         return true;
     }
+}
+
+function clearAll()
+{
+    document.getElementById("result").innerText = "0";
+    document.getElementById("Input").value = "";
+    document.getElementById("Input2").value = "";
+
+    input2 = 0;
+    input = 0;
+    result = 0;
 }
 
 function add()
@@ -63,7 +74,7 @@ function divide()
         }
         else
         {
-            document.getElementById("result").innerText = "You can't divide by zero!"
+            document.getElementById("result").innerText = "You can't divide by zero!";
         }
     }
 }
