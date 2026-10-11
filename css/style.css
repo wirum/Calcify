@@ -52,7 +52,7 @@ input, button
     font-variation-settings: "wdth" 100;
     color:antiquewhite;
     background-color: rgb(24, 68, 59);
-    border: 2px double wheat;
+    border: 2px solid wheat;
     border-radius: 5px;
 }
 
@@ -73,7 +73,32 @@ button:hover
     cursor: pointer;
 }
 
-input:hover
+input:focus
 {
     cursor:text;
+}
+
+.operators
+{
+    margin: 0.2rem auto;
+}
+
+@media (max-width: 600px) 
+{
+    main
+    {
+        display: block;
+    }
+    .result
+    {
+        width: 90%;
+    }
+    input
+    {
+        margin-bottom: 0.5rem;
+    }
+    .operators
+    {
+        align-items: center;
+    }
 }
