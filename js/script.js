@@ -5,7 +5,7 @@ let oddeven = 0;
 let calchistory= [];
 let historytext = "";
 
-window.addEventListener("load", loadHistory)
+window.addEventListener("load", loadHistory);
 
 function loadHistory()
 {
@@ -100,13 +100,13 @@ function clearAll()
 function clearHistory()
 {
     document.getElementById("calcHistory").innerText = "";
-    calchistory=[]
+    calchistory=[];
     localStorage.removeItem("history");
 }
 
 function add()
 {
-    read()
+    read();
     if (verify())
     {
         result= input+ input2;
@@ -120,7 +120,7 @@ function add()
 }
 function subtract()
 {
-    read()
+    read();
     if (verify())
     {
         result=input - input2;
@@ -135,7 +135,7 @@ function subtract()
 }
 function divide()
 {
-    read()
+    read();
     if (verify())
     {
         if (input2 != 0)
@@ -152,7 +152,7 @@ function divide()
 }
 function multiply()
 {
-    read()
+    read();
     if (verify())
     {
         result = input * input2;
@@ -167,7 +167,7 @@ function multiply()
 
 function power()
 {
-    read()
+    read();
     if (verify())
     {
         result = input ** input2;
@@ -182,7 +182,7 @@ function power()
 
 function restDivision()
 {
-    read()
+    read();
     if (verify())
     {
         if (input2 != 0)
@@ -207,7 +207,7 @@ function restDivision()
 
 function oddOreven()
 {
-    readOdd()
+    readOdd();
     if (verifyOdd())
     {
         if (oddeven % 2 === 0) 
