@@ -1,7 +1,7 @@
 let result = 0;
 let input = 0;
 let input2 = 0;
-
+let valid = false;
 
 
 
@@ -13,31 +13,54 @@ function read()
     input2= Number.parseFloat(input2);
 }
 
+function verify()
+{
+    if (input!=NaN || input2!=NaN)
+    {
+        valid = true;
+    }
+    else
+    {
+        document.getElementById("result").innerText = "You forgot an value.."
+        valid = false;
+    }
+}
 
 function add()
 {
     read()
-    result= input+ input2;
-    document.getElementById("result").innerText = result;
+    if (verify() == true)
+    {
+        result= input+ input2;
+        document.getElementById("result").innerText = result;
+    }
 }
 function subtract()
 {
     read()
-    result=input - input2;
-    document.getElementById("result").innerText = result;
+    if (verify() == true)
+    {
+        result=input - input2;
+        document.getElementById("result").innerText = result;
+    }
+
 }
 function divide()
 {
     read()
-    if (input2 != 0)
+    if (verify() == true)
     {
-        result = input / input2;
-        document.getElementById("result").innerText = result;
+        if (input2 != 0)
+        {
+            result = input / input2;
+            document.getElementById("result").innerText = result;
+        }
+        else
+        {
+            document.getElementById("result").innerText = "You can't divide by zero!"
+        }
     }
-    else
-    {
-        document.getElementById("result").innerText = "You can't divide by zero!"
-    }
+
 }
 function multiply()
 {
