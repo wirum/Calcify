@@ -41,7 +41,7 @@ I already had a lot of previous experience with HTML, so nothing that new.
 
 ## Running locally
 
-To run, you can download the project files and open the index.html, or you can use the website (coming soon!).
+To run, you can download the project files and open the index.html, or you can use the website ([Click here!](https://wirum.github.io/Calcify/)).
 
 ## License
 
