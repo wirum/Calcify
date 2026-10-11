@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+
+main{
+    display: flex;
+    gap: 20px;
+}
+
+body{
+    background-color: rgb(24, 68, 59);
+    color:wheat;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+.result
+{
+    border: 2px solid wheat;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    width: 20%;
+    padding: 5px;
+}
+
+.Calculator , 
+.History
+{
+    border: 5px solid wheat;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.Calculator
+{
+    flex: 2;
+}
+
+.History
+{
+    flex: 1;
+}
+
+input, button
+{
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    color:antiquewhite;
+    background-color: rgb(24, 68, 59);
+    border: 2px double wheat;
+    border-radius: 5px;
+}
+
+button, input
+{
+    transition: 0.2s;
+}
+
+button:hover, input:hover
+{
+    color: rgb(24, 68, 59);
+    background-color: wheat;
+    font-weight: 500;
+}
+
+button:hover
+{
+    cursor: pointer;
+}
+
+input:hover
+{
+    cursor:text;
+}

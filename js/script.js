@@ -76,7 +76,7 @@ function add()
     if (verify())
     {
         result= input+ input2;
-        document.getElementById("result").innerText = result;
+        document.getElementById("result").innerText = `Result: ${result}`;
         calcHistory(input," + ", input2, result);
     }
     else
@@ -90,7 +90,7 @@ function subtract()
     if (verify())
     {
         result=input - input2;
-        document.getElementById("result").innerText = result;
+        document.getElementById("result").innerText = `Result: ${result}`;
         calcHistory(input," - ", input2, result);
     }
     else
@@ -107,7 +107,7 @@ function divide()
         if (input2 != 0)
         {
             result = input / input2;
-            document.getElementById("result").innerText = result;
+            document.getElementById("result").innerText = `Result: ${result}`;
             calcHistory(input," / ", input2, result);
         }
         else
@@ -122,7 +122,7 @@ function multiply()
     if (verify())
     {
         result = input * input2;
-        document.getElementById("result").innerText = result;
+        document.getElementById("result").innerText = `Result: ${result}`;
         calcHistory(input," * ", input2, result);
     }
     else
@@ -137,7 +137,7 @@ function power()
     if (verify())
     {
         result = input ** input2;
-        document.getElementById("result").innerText = result;
+        document.getElementById("result").innerText = `Result: ${result}`;
         calcHistory(input," ** ", input2, result);
     }
     else
@@ -154,7 +154,7 @@ function restDivision()
         if (input2 != 0)
         {
             result = input % input2;
-            document.getElementById("result").innerText = result;
+            document.getElementById("result").innerText = `Result: ${result}`;
             calcHistory(input," mod ", input2, result);
         }
         else

@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="js/script.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Calcify</title>
-  </head>
-  <body>
-    <header>
-      <h1>Calcify</h1>
-    </header>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/script.js"></script>
 
-    <main>
-      <hr />
+  <title>Calcify</title>
+</head>
+
+<body>
+  <header>
+    <h1>Calcify</h1>
+  </header>
+
+  <main>
+    <div class="Calculator">
       <h1>Welcome to Calcify</h1>
       <p>Write and Click the operators</p>
 
@@ -28,32 +30,37 @@
       <button onclick="divide()"> ÷ </button>
       <button onclick="power()"> ^ </button>
       <button onclick="restDivision()"> mod </button>
-      <br/>
+      <br />
+      <br />
       <button onclick="clearAll()">Clear</button>
 
-      <h2 id="result">0</h2>
-
-      <br/>
-      <br/>
-      <br/>
+      <div class="result">
+        <h2 id="result">Result: 0</h2>
+      </div>
+      <br />
+      <br />
+      <br />
 
       <p>Odd or Even checker!</p>
       <input type="text" id="OddOrEven" name="OddOrEven">
       <button onclick="oddOreven()"> Check! </button>
-
-      <h2 id="result2">Type the number and click (check)</h2>
-
-      <br/>
-      <br/>
-      <br/>
-
+      <div class="result">
+        <h2 id="result2">Type in a number</h2>
+      </div>    
+      <br />
+      <br />
+      <br />
+    </div>
+    <div class="History">
       <h2>History</h2>
       <p id="calcHistory"></p>
       <button onclick="clearHistory()">Clear</button>
-    </main>
+    </div>
+  </main>
 
-    <footer>
-      <p>&copy; 2026 Calcify</p>
-    </footer>
-  </body>
+  <footer>
+    <p>&copy; 2026 Calcify</p>
+  </footer>
+</body>
+
 </html>
