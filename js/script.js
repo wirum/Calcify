@@ -1,7 +1,7 @@
 let result = 0;
 let input = 0;
 let input2 = 0;
-
+let oddeven = 0;
 
 function read()
 {
@@ -11,11 +11,30 @@ function read()
     input2= Number.parseFloat(input2);
 }
 
+function readOdd()
+{
+    oddeven = document.getElementById("OddOrEven").value;
+    oddeven = Number.parseFloat(oddeven);
+}
+
 function verify()
 {
     if (isNaN(input) || isNaN(input2))
     {
         document.getElementById("result").innerText = "You forgot an value..";
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+function verifyOdd()
+{
+    if (isNaN(oddeven))
+    {
+        document.getElementById("result2").innerText = "You forgot the value..";
         return false;
     }
     else
@@ -84,6 +103,55 @@ function multiply()
     if (verify())
     {
         result = input * input2;
+        document.getElementById("result").innerText = result;
+    }
+    else
+    {
+        return;
+    }
+}
+
+function power()
+{
+    read()
+    if (verify())
+    {
+        result = input ** input2;
+        document.getElementById("result").innerText = result;
+    }
+    else
+    {
+        return;
+    }
+}
+
+function oddOreven()
+{
+    readOdd()
+    if (verifyOdd())
+    {
+        if (oddeven % 2 === 0) 
+        {
+            document.getElementById("result2").innerText = "Even Number!";
+        }
+        else 
+        {
+            document.getElementById("result2").innerText = "Odd Number!";
+        }
+    }
+    else
+    {
+        return;
+    }
+    
+}
+
+function restDivision()
+{
+    read()
+    if (verify())
+    {
+        result = input % input2;
         document.getElementById("result").innerText = result;
     }
     else
