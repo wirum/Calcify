@@ -3,12 +3,45 @@ let input = 0;
 let input2 = 0;
 let oddeven = 0;
 let calchistory= [];
+let historytext = "";
+
+window.addEventListener("load", loadHistory)
+
+function loadHistory()
+{
+    if (JSON.parse(localStorage.getItem("history")) != null)
+    {
+        calchistory = JSON.parse(localStorage.getItem("history"));    
+        historytext = calchistory.join("\n");
+        document.getElementById("calcHistory").innerText = historytext;
+    }
+    else
+    {
+        return;
+    }
+
+}
+
+function copyResult()
+{
+    navigator.clipboard.writeText(result);
+    alert("Copiado!");
+}
+
+function copyHistory()
+{
+    let historytext = calchistory.join("\n");
+    navigator.clipboard.writeText(historytext);
+    alert("Copiado!");
+}
+
 
 function calcHistory(num1,operator,num2,res)
 {
     calchistory.push(`${num1} ${operator} ${num2} = ${res}`);
-    let historytext = calchistory.join("\n")
+    historytext = calchistory.join("\n");
     document.getElementById("calcHistory").innerText = historytext;
+    localStorage.setItem("history", JSON.stringify(calchistory));
 }
 
 function read()
@@ -55,7 +88,7 @@ function verifyOdd()
 
 function clearAll()
 {
-    document.getElementById("result").innerText = "0";
+    document.getElementById("result").innerText = "Result: 0";
     document.getElementById("Input").value = "";
     document.getElementById("Input2").value = "";
 
@@ -68,6 +101,7 @@ function clearHistory()
 {
     document.getElementById("calcHistory").innerText = "";
     calchistory=[]
+    localStorage.removeItem("history");
 }
 
 function add()
@@ -191,4 +225,3 @@ function oddOreven()
     }
     
 }
-
