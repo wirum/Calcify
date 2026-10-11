@@ -1,8 +1,6 @@
 let result = 0;
 let input = 0;
 let input2 = 0;
-let valid = false;
-
 
 
 function read()
@@ -15,40 +13,48 @@ function read()
 
 function verify()
 {
-    if (input!=NaN || input2!=NaN)
+    if (isNaN(input) || isNaN(input2))
     {
-        valid = true;
+        document.getElementById("result").innerText = "You forgot an value.."
+        return false;
     }
     else
     {
-        document.getElementById("result").innerText = "You forgot an value.."
-        valid = false;
+        return true;
     }
 }
 
 function add()
 {
     read()
-    if (verify() == true)
+    if (verify())
     {
         result= input+ input2;
         document.getElementById("result").innerText = result;
+    }
+    else
+    {
+        return;
     }
 }
 function subtract()
 {
     read()
-    if (verify() == true)
+    if (verify())
     {
         result=input - input2;
         document.getElementById("result").innerText = result;
+    }
+    else
+    {
+        return;
     }
 
 }
 function divide()
 {
     read()
-    if (verify() == true)
+    if (verify())
     {
         if (input2 != 0)
         {
@@ -60,11 +66,17 @@ function divide()
             document.getElementById("result").innerText = "You can't divide by zero!"
         }
     }
-
 }
 function multiply()
 {
     read()
-    result = input * input2;
-    document.getElementById("result").innerText = result;
+    if (verify())
+    {
+        result = input * input2;
+        document.getElementById("result").innerText = result;
+    }
+    else
+    {
+        return;
+    }
 }
