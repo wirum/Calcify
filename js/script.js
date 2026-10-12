@@ -112,6 +112,7 @@ function evaluate()
         }
     }
     document.getElementById("result").innerText = `Result: ${result}`;
+    calcHistory(cleanInput.join(""), result)
 }
 
 function prepareInput(array, i)
@@ -170,9 +171,9 @@ function copyHistory()
 }
 
 
-function calcHistory(num1,operator,num2,res)
+function calcHistory(nums,res)
 {
-    calchistory.push(`${num1} ${operator} ${num2} = ${res}`);
+    calchistory.push(`${nums} = ${res}`);
     historytext = calchistory.join("\n");
     document.getElementById("calcHistory").innerText = historytext;
     localStorage.setItem("history", JSON.stringify(calchistory));
