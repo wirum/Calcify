@@ -1,9 +1,11 @@
 let result = 0;
 let input = 0;
+let input1 = 0;
 let oddeven = 0;
 let calchistory= [];
 let historytext = "";
 let cleanInput = [];
+let operations = [];
 
 window.addEventListener("load", loadHistory);
 
@@ -38,7 +40,7 @@ function tokenizer()
     {
         if (used == false)
         {
-            prepareInput(y);
+            prepareInput(cleanInput, y);
         }
         console.log(input[i]);
         currentNumber = input[i]
@@ -51,7 +53,7 @@ function tokenizer()
         {
             cleanInput[y] = parseFloat(cleanInput[y])
             y++;
-            prepareInput(y);
+            prepareInput(cleanInput, y);
             cleanInput[y] = currentNumber
             y++;
             used = false;
@@ -68,12 +70,39 @@ function tokenizer()
     }
     cleanInput[y] = parseFloat(cleanInput[y])
     console.log(cleanInput);
-
+    evaluate()
 }
 
-function prepareInput(i)
+function evaluate()
 {
-    cleanInput[i] = "";
+    let y = 0
+    let x = 0
+    let z = 0
+    let used = false;
+    let num1, num2 = 0;
+    for(let i = 0; i < cleanInput.length; i++)
+    {
+        if(cleanInput[i] == "+")
+        {
+            y = i
+            if (used == false)
+            {
+                y--
+                result += cleanInput[y]
+                used = true
+                y++;
+            }
+
+            y++; 
+            result += cleanInput[y]
+        }
+    }
+    document.getElementById("result").innerText = `Result: ${result}`;
+}
+
+function prepareInput(array, i)
+{
+    array[i] = "";
 }
 
 function isNumber(isNum)
@@ -184,9 +213,7 @@ function clearAll()
 {
     document.getElementById("result").innerText = "Result: 0";
     document.getElementById("Input").value = "";
-    document.getElementById("Input2").value = "";
 
-    input2 = 0;
     input = 0;
     result = 0;
 }
@@ -194,6 +221,7 @@ function clearAll()
 function clearInput()
 {
     cleanInput = [];
+    result = 0;
 }
 
 function clearHistory()
@@ -208,7 +236,7 @@ function add()
     read();
     if (verify())
     {
-        result= input+ input2;
+        result= input1+ input2;
         document.getElementById("result").innerText = `Result: ${result}`;
         calcHistory(input," + ", input2, result);
     }
