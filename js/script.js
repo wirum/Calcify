@@ -44,6 +44,20 @@ function tokenizer()
         currentNumber = input[i]
         if (isNumber(currentNumber))
         {
+            cleanInput[y] += currentNumber
+            used = true; 
+        }
+        else if(isOperator(currentNumber))
+        {
+            cleanInput[y] = parseFloat(cleanInput[y])
+            y++;
+            prepareInput(y);
+            cleanInput[y] = currentNumber
+            y++;
+            used = false;
+        }
+        else if(isDecimal(currentNumber))
+        {
             if (currentNumber == ",")
             {
                 currentNumber = "."
@@ -51,18 +65,10 @@ function tokenizer()
             cleanInput[y] += currentNumber
             used = true;
         }
-        else if(isOperator(currentNumber))
-        {
-            y++;
-            prepareInput(y);
-            cleanInput[y] = currentNumber
-            y++;
-            used = false;
-        }
-
     }
+    cleanInput[y] = parseFloat(cleanInput[y])
     console.log(cleanInput);
-    used = false;
+
 }
 
 function prepareInput(i)
@@ -76,10 +82,6 @@ function isNumber(isNum)
     {
         return true;
     }      
-    else if (isDecimal(isNum))
-    {
-        return true;
-    }
     else 
     {
         return false;
