@@ -88,13 +88,27 @@ function evaluate()
             if (used == false)
             {
                 y--
-                result += cleanInput[y]
+                result = cleanInput[y]
                 used = true
                 y++;
             }
 
             y++; 
             result += cleanInput[y]
+        }
+        else if (cleanInput[i] == "-")
+        {
+            y = i
+            if (used == false)
+            {
+                y--
+                result = cleanInput[y]
+                used = true
+                y++;
+            }
+
+            y++; 
+            result -= cleanInput[y]
         }
     }
     document.getElementById("result").innerText = `Result: ${result}`;
