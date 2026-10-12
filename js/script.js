@@ -1,9 +1,9 @@
 let result = 0;
 let input = 0;
-let input2 = 0;
 let oddeven = 0;
 let calchistory= [];
 let historytext = "";
+let cleanInput = [];
 
 window.addEventListener("load", loadHistory);
 
@@ -21,6 +21,95 @@ function loadHistory()
     }
 
 }
+
+function calculate()
+{
+    tokenizer();
+}
+
+function tokenizer()
+{   
+    clearInput()
+    let used = false;
+    let y = 0;
+    let currentNumber = "";
+    read();
+    for(let i = 0; i < input.length; i++)
+    {
+        if (used == false)
+        {
+            prepareInput(y);
+        }
+        console.log(input[i]);
+        currentNumber = input[i]
+        if (isNumber(currentNumber))
+        {
+            if (currentNumber == ",")
+            {
+                currentNumber = "."
+            }
+            cleanInput[y] += currentNumber
+            used = true;
+        }
+        else if(isOperator(currentNumber))
+        {
+            y++;
+            prepareInput(y);
+            cleanInput[y] = currentNumber
+            y++;
+            used = false;
+        }
+
+    }
+    console.log(cleanInput);
+    used = false;
+}
+
+function prepareInput(i)
+{
+    cleanInput[i] = "";
+}
+
+function isNumber(isNum)
+{
+    if(isNum == "0" || isNum == "1" || isNum == "2" || isNum == "3" || isNum == "4" || isNum == "5"  || isNum == "6" || isNum == "7" || isNum == "8" || isNum == "9")
+    {
+        return true;
+    }      
+    else if (isDecimal(isNum))
+    {
+        return true;
+    }
+    else 
+    {
+        return false;
+    }
+}
+
+function isOperator(isOpp)
+{
+    if(isOpp == "+" || isOpp == "-" || isOpp == "*" || isOpp == "/" || isOpp == "^")
+    {
+        return true;
+    }      
+    else 
+    {
+        return false;
+    }
+}
+
+function isDecimal(isDec)
+{
+    if(isDec == "," || isDec == ".")
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 
 function copyResult()
 {
@@ -47,7 +136,10 @@ function calcHistory(num1,operator,num2,res)
 function read()
 {
     input = document.getElementById("Input").value;
-    input2 = document.getElementById("Input2").value;
+}
+
+function converter()
+{
     input = input.replace(",", ".");
     input2 = input2.replace(",", ".");
     input= Number.parseFloat(input);
@@ -95,6 +187,11 @@ function clearAll()
     input2 = 0;
     input = 0;
     result = 0;
+}
+
+function clearInput()
+{
+    cleanInput = [];
 }
 
 function clearHistory()
