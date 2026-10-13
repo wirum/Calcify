@@ -62,6 +62,9 @@ function calculate()
 
         document.getElementById("result").innerText = `Result: ${result}`;
         document.querySelector(".HowTo").style.display = "block";
+        howTo.push(`${result} = ${result}`);
+        howToHistory = howTo.join("\n");
+        document.getElementById("howTo").innerText = howToHistory;
     }
     else
     {
@@ -116,8 +119,9 @@ function tokenizer()
     for(let i = 0; length > i; i++)
     {
         evaluate();
-        steps(cleanInput.join(""), result)
+        
     }
+    
 }
 
 function evaluate()
@@ -168,11 +172,11 @@ function evaluate()
         }
         console.log("result:");
         console.log(result);
+        steps(operation[1].join(""), result)
         getRidOfTs(cleanInput, pos, 3)
 
         console.log("depois do getRidOfTs:");
         console.log(cleanInput);
-
     //}
     
 }
