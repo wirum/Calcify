@@ -80,39 +80,91 @@ function evaluate()
     let z = 0
     let used = false;
     let num1, num2 = 0;
-    for(let i = 0; i < cleanInput.length; i++)
+    let operation = scan(cleanInput);
+    console.log(operation);
+    if(operation[0] == 2)
     {
-        if(cleanInput[i] == "+")
+        if (operation[1][1] == "/")
         {
-            y = i
-            if (used == false)
-            {
-                y--
-                result = cleanInput[y]
-                used = true
-                y++;
-            }
-
-            y++; 
-            result += cleanInput[y]
+            result = operation[1][0] / operation[1][2]
         }
-        else if (cleanInput[i] == "-")
+        else if(operation[1][1] == "*")
         {
-            y = i
-            if (used == false)
-            {
-                y--
-                result = cleanInput[y]
-                used = true
-                y++;
-            }
-
-            y++; 
-            result -= cleanInput[y]
+            result = operation[1][0] * operation[1][2]
+        }
+        else
+        {
+            error();
+        }
+    }
+    else if(operation[0] == 3)
+    {
+        if(operation[1][1] == "+")
+        {
+            result = operation[1][0] + operation[1][2]
+        }
+        else if(operation[1][1] == "-")
+        {
+            result = operation[1][0] - operation[1][2]
+        }
+        else
+        {
+            error();
         }
     }
     document.getElementById("result").innerText = `Result: ${result}`;
     calcHistory(cleanInput.join(""), result)
+}
+
+function scan(array)
+{
+    let found = false;
+    for(let i = 0; i < array.length; i++)
+    {
+            if (array[i] == "*" || array[i] == "/")
+            {
+                //retorna prioridade 2, posição
+                found = true;
+                return[2,findEm(array,i)]
+            }
+            else 
+            {
+                found=false
+            }
+
+    }
+    if (!found)
+    {
+
+        for(let i = 0; i < array.length; i++)
+        {
+            if(array[i] == "+" || array[i] == "-")
+            {
+                //retorna prioridade 3, posição
+                found = true
+                return[3,findEm(array,i)]
+            }
+            else
+            {
+                found = false;
+            }
+
+        }
+    }
+
+}
+
+function findEm(array,opPos)
+{
+    let lilbro=opPos
+    let middlebro = opPos
+    let bigbro = opPos
+    lilbro--
+    bigbro++
+    lilbro = array[lilbro]
+    middlebro = array[middlebro]
+    bigbro = array[bigbro]
+    return[lilbro, middlebro, bigbro];
 }
 
 function prepareInput(array, i)
@@ -222,6 +274,11 @@ function verifyOdd()
     {
         return true;
     }
+}
+
+function error()
+{
+    alert("Algo deu errado..!")
 }
 
 function clearAll()
