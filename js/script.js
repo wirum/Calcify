@@ -1,8 +1,11 @@
 let result = 0;
+let click = 0
 let input = 0;
 let input1 = 0;
 let oddeven = 0;
 let calchistory= [];
+let howTo=[];
+let howToHistory = "";
 let historytext = "";
 let cleanInput = [];
 let operations = [];
@@ -24,9 +27,46 @@ function loadHistory()
 
 }
 
+function showMe()
+{   
+    if (click == 0)
+    {
+        document.getElementById("howTo").style.display = "block";
+        click++
+    }
+    else
+    {
+        document.getElementById("howTo").style.display = "none";
+        click = 0
+    }
+}
+
+function steps(nums,res)
+{
+    howTo.push(`${nums} = ${res}`);
+    howToHistory = howTo.join("\n");
+    document.getElementById("howTo").innerText = howToHistory;
+}
+
 function calculate()
 {
-    tokenizer();
+    read();
+
+    if (verify() == true)
+    {
+        let originalInput = input;
+
+        tokenizer();
+
+        calcHistory(originalInput, result);
+
+        document.getElementById("result").innerText = `Result: ${result}`;
+        document.querySelector(".HowTo").style.display = "block";
+    }
+    else
+    {
+        document.getElementById("result").innerText = "You forgot the value..";
+    }
 }
 
 function tokenizer()
@@ -76,8 +116,8 @@ function tokenizer()
     for(let i = 0; length > i; i++)
     {
         evaluate();
+        steps(cleanInput.join(""), result)
     }
-  
 }
 
 function evaluate()
@@ -134,8 +174,7 @@ function evaluate()
         console.log(cleanInput);
 
     //}
-    document.getElementById("result").innerText = `Result: ${result}`;
-    calcHistory(cleanInput.join(""), result)
+    
 }
 
 function getRidOfTs(array, start, quantity)
@@ -294,7 +333,7 @@ function readOdd()
 
 function verify()
 {
-    if (isNaN(input) || isNaN(input2))
+    if (input.trim() == "")
     {
         document.getElementById("result").innerText = "You forgot an value..";
         return false;
@@ -327,9 +366,17 @@ function clearAll()
 {
     document.getElementById("result").innerText = "Result: 0";
     document.getElementById("Input").value = "";
+    document.getElementById("howTo").innerText = "";
 
-    input = 0;
     result = 0;
+    input = 0;
+    input1 = 0;
+    calchistory= [];
+    howTo=[];
+    howToHistory = "";
+    cleanInput = [];
+    operations = [];
+    historytext = [""];
 }
 
 function clearInput()

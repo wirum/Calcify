@@ -36,6 +36,22 @@ body{
 .Calculator
 {
     flex: 2;
+    position: relative;
+}
+
+#howTo {
+    display: none;
+}
+
+.HowTo
+{
+    display: none;
+    position: absolute;
+    top: 75px;
+    right: 200px;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 2rem;
 }
 
 .History
