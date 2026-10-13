@@ -42,7 +42,6 @@ function tokenizer()
         {
             prepareInput(cleanInput, y);
         }
-        console.log(input[i]);
         currentNumber = input[i]
         if (isNumber(currentNumber))
         {
@@ -69,8 +68,16 @@ function tokenizer()
         }
     }
     cleanInput[y] = parseFloat(cleanInput[y])
+    console.log("tokenizer:");
     console.log(cleanInput);
-    evaluate()
+    let length = cleanInput.length
+    length--
+    length = length/2
+    for(let i = 0; length > i; i++)
+    {
+        evaluate();
+    }
+  
 }
 
 function evaluate()
@@ -80,40 +87,65 @@ function evaluate()
     let z = 0
     let used = false;
     let num1, num2 = 0;
-    let operation = scan(cleanInput);
-    console.log(operation);
-    if(operation[0] == 2)
-    {
-        if (operation[1][1] == "/")
+    /*let length = scan(cleanInput)
+    //for(let i = 0; i < length.length; i++)
+    {*/
+        let operation = scan(cleanInput);
+        console.log("scan:");
+        console.log(operation);
+        let pos = operation[2]
+        pos--
+        console.log(operation);
+        if(operation[0] == 2)
         {
-            result = operation[1][0] / operation[1][2]
+            if (operation[1][1] == "/")
+            {
+                result = operation[1][0] / operation[1][2]
+            }
+            else if(operation[1][1] == "*")
+            {
+                result = operation[1][0] * operation[1][2]
+            }
+            else
+            {
+                error();
+            }
         }
-        else if(operation[1][1] == "*")
+        else if(operation[0] == 3)
         {
-            result = operation[1][0] * operation[1][2]
+            if(operation[1][1] == "+")
+            {
+                result = operation[1][0] + operation[1][2]
+            }
+            else if(operation[1][1] == "-")
+            {
+                result = operation[1][0] - operation[1][2]
+            }
+            else
+            {
+                error();
+            }
         }
-        else
-        {
-            error();
-        }
-    }
-    else if(operation[0] == 3)
-    {
-        if(operation[1][1] == "+")
-        {
-            result = operation[1][0] + operation[1][2]
-        }
-        else if(operation[1][1] == "-")
-        {
-            result = operation[1][0] - operation[1][2]
-        }
-        else
-        {
-            error();
-        }
-    }
+        console.log("result:");
+        console.log(result);
+        getRidOfTs(cleanInput, pos, 3)
+
+        console.log("depois do getRidOfTs:");
+        console.log(cleanInput);
+
+    //}
     document.getElementById("result").innerText = `Result: ${result}`;
     calcHistory(cleanInput.join(""), result)
+}
+
+function getRidOfTs(array, start, quantity)
+{
+    // arremessa fora os 3 já calculados, chamados no evaluate depois do scan (ninguém gosta deles)
+    let notaproblem = ""
+    let problemtofix  = array
+    let problem =  problemtofix.splice(start,quantity, result)
+    notaproblem = problemtofix
+    return notaproblem//anymore;
 }
 
 function scan(array)
@@ -125,7 +157,7 @@ function scan(array)
             {
                 //retorna prioridade 2, posição
                 found = true;
-                return[2,findEm(array,i)]
+                return[2,findEm(array,i), i]
             }
             else 
             {
@@ -142,7 +174,7 @@ function scan(array)
             {
                 //retorna prioridade 3, posição
                 found = true
-                return[3,findEm(array,i)]
+                return[3,findEm(array,i), i]
             }
             else
             {
@@ -152,6 +184,16 @@ function scan(array)
         }
     }
 
+}
+
+function findEmWhere(array, opPos)
+{
+    let lilbro=opPos
+    let middlebro = opPos
+    let bigbro = opPos
+    lilbro--
+    bigbro++
+    return[lilbro, middlebro, bigbro];
 }
 
 function findEm(array,opPos)
