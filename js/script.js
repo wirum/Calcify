@@ -90,8 +90,11 @@ function tokenizer() {
                 used = false;
             }
             else if (currentNumber == ")") {
-                cleanInput[y] = parseFloat(cleanInput[y])
-                y++
+                if(used)
+                {
+                    cleanInput[y] = parseFloat(cleanInput[y])
+                    y++
+                }
                 cleanInput[y] = currentNumber
                 y++
                 used = false;
@@ -125,7 +128,10 @@ function tokenizer() {
         }
     }
     console.log(`joinEm() ${joinEm(cleanInput)}`)
-    cleanInput[y] = parseFloat(cleanInput[y])
+    if (used)
+    {
+        cleanInput[y] = parseFloat(cleanInput[y])
+    }
     console.log("tokenizer:");
     console.log(cleanInput);
     if (cleanInput.length === 1) {
@@ -153,8 +159,7 @@ function evaluate() {
     /*let length = scan(cleanInput)
     //for(let i = 0; i < length.length; i++)
     {*/
-    if (parEval == "")
-    {
+    if (parEval == "") {
         parEval = scan(cleanInput)
     }
     operation = parEval;
@@ -164,13 +169,12 @@ function evaluate() {
     let pos = operation[2]
     pos--
     console.log(operation);
-    if (operation[0] == 0 && !evalUsed)
-    {
-        parPos= [operation[1][0], operation[1][1]]
-        operation = cleanInput.slice(operation[1][0]+1, operation[1][1])
+    if (operation[0] == 0 && !evalUsed) {
+        parPos = [operation[1][0], operation[1][1]]
+        operation = cleanInput.slice(operation[1][0] + 1, operation[1][1])
         parLength = operation.length
         parEval = scan(operation)
-        evalUsed = true;    
+        evalUsed = true;
         evaluate()
         return;
     }
@@ -207,31 +211,41 @@ function evaluate() {
     console.log("evalUsed:", evalUsed)
     console.log("parLength:", parLength)
     console.log("parPos:", parPos)
-    if (evalUsed == true)
-    {
-        if (parLength == 3)
-        {   
+    if (evalUsed == true) {
+        if (parLength == 3) {
             parEval = ""
             steps(operation[1].join(""), result)
             getRidOfTs(cleanInput, parPos[0], 5)
             evalUsed = false;
             parPos = [];
 
-
             console.log("RESET:")
             console.log("evalUsed:", evalUsed)
             console.log("parEval:", parEval)
             console.log("parPos:", parPos)
         }
-        else
-        {
+        else {
+            let realPos = parPos[0] + operation[2]
+
+            console.log("operation[2]:", operation[2])
+            console.log("parPos[0]:", parPos[0])
+            console.log("realPos:", realPos)
             steps(operation[1].join(""), result)
-            getRidOfTs(cleanInput, pos, 3)
-            parEval = ""
+            getRidOfTs(cleanInput, realPos, 3)
+            parPos[1] -= 2
+            console.log("parPos:", parPos)
+
+            let newPar = cleanInput.slice(parPos[0]+1,parPos[1])
+            parLength = newPar.length
+
+            parEval = scan(newPar)
+
+            console.log("NEW PAR:", newPar)
+            console.log("NEW LENGTH:", parLength)
+            console.log("NEW EVAL:", parEval)
         }
     }
-    else
-    {
+    else {
         steps(operation[1].join(""), result)
         getRidOfTs(cleanInput, pos, 3)
         parEval = ""
