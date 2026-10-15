@@ -143,7 +143,6 @@ function tokenizer() {
 }
 
 
-add recursive parenthesis evaluation"
 function evaluate() {
     let y = 0
     let x = 0
