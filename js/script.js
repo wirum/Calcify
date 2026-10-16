@@ -278,6 +278,13 @@ function getRidOfTs(array, start, quantity) {
 
 function scan(array) {
     let i
+    for(i = array.length-1; i>= 0; i--)
+    {
+        if(array[i] == "^") 
+        {
+            return [1, findEm(array,i), i]
+        }
+    }
     for (i = 0; i < array.length; i++) {
         if (array[i] == "(") {
             return [0, joinEm(array), i]
@@ -291,13 +298,6 @@ function scan(array) {
     for (i = 0; i < array.length; i++) {
         if (array[i] == "+" || array[i] == "-") {
             return [3, findEm(array, i), i]
-        }
-    }
-    for(i = array.length-1; i>= 0; i--)
-    {
-        if(array[i] == "^") 
-        {
-            return [1, findEm(array,i), i]
         }
     }
 }
