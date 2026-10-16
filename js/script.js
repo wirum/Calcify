@@ -178,6 +178,11 @@ function evaluate() {
         evaluate()
         return;
     }
+    else if (operation[0] == 1 && operation[1][1] == "^")
+    {
+        console.log("POWER:", operation[1])
+        result = operation[1][0] ** operation [1][2]
+    }
     else if (operation[0] == 2) {
         if (operation[1][1] == "/") {
             if (operation[1][2] == 0) {
@@ -286,6 +291,13 @@ function scan(array) {
     for (i = 0; i < array.length; i++) {
         if (array[i] == "+" || array[i] == "-") {
             return [3, findEm(array, i), i]
+        }
+    }
+    for(i = array.length-1; i>= 0; i--)
+    {
+        if(array[i] == "^") 
+        {
+            return [1, findEm(array,i), i]
         }
     }
 }
