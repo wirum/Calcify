@@ -55,22 +55,19 @@ function calculate() {
         let originalInput = input;
 
         tokenizer();
-        if(verifyExpression(cleanInput))
+        if (!isZero) 
         {
-            if (!isZero) 
-            {
-                calcHistory(originalInput, result);
+            calcHistory(originalInput, result);
 
-                document.getElementById("result").innerText = `Result: ${result}`;
-                document.querySelector(".HowTo").style.display = "block";
-                howTo.push(`${result} = ${result}`);
-                howToHistory = howTo.join("\n");
-                document.getElementById("howTo").innerText = howToHistory;
-            }
-            else if (isZero) 
-            {
-                document.getElementById("result").innerText = "You can't divide by zero you dummy!";
-            }
+            document.getElementById("result").innerText = `Result: ${result}`;
+            document.querySelector(".HowTo").style.display = "block";
+            howTo.push(`${result} = ${result}`);
+            howToHistory = howTo.join("\n");
+            document.getElementById("howTo").innerText = howToHistory;
+        }
+        else if (isZero) 
+        {
+            document.getElementById("result").innerText = "You can't divide by zero you dummy!";
         }
     }   
 }
@@ -138,16 +135,29 @@ function tokenizer() {
     }
     console.log("tokenizer:");
     console.log(cleanInput);
-    if (cleanInput.length === 1) {
-        result = cleanInput[0]
-    }
-    else {
-        let length = cleanInput.length
-        length--
-        length = length / 2
 
-        while (cleanInput.length > 1) {
-            evaluate();
+    /*Millennium Bug
+    Born: 16/10/2026
+    Killed: 16/10/2026
+
+    Cause of death: normalizeUnary()
+    RAM consumed during lifetime: regrettable*/
+    // -5 is now, remarkably, just -5.
+    normalizeUnary(cleanInput)
+
+    console.log("normalized:");
+    console.log(cleanInput);
+    if(verifyExpression(cleanInput))
+    {
+        if (cleanInput.length === 1) 
+        {
+            result = cleanInput[0]
+        }
+        else 
+        {
+            while (cleanInput.length > 1) {
+                evaluate();
+            }
         }
     }
 }
@@ -157,7 +167,7 @@ function evaluate() {
     let y = 0
     let x = 0
     let z = 0
-    let used = false;
+    let used = false;   
     let num1, num2 = 0;
     let operation
     /*let length = scan(cleanInput)
@@ -276,7 +286,7 @@ function verifyExpression(array)
     let number,operator,parenthesis,unary = false;
     for (i;i < array.length; i++)
     { 
-        if (isNumber(array[i]))
+        if (isNumberToken(array[i]))
         {
             number = true;
         }
@@ -362,6 +372,24 @@ function isParenthesisLog(char) {
     return false;
 }
 
+function normalizeUnary(array)
+{
+    let i = 0
+    for (i;i < array.length; i++)
+    {
+        if(isUnary(array, i))
+        {
+            if(array[i + 1] !== undefined)
+            {
+                if(isNumber(array[i + 1]))
+                {
+                    array.splice(i,2,parseFloat(array[i] + array[i + 1]))
+                }
+            }
+        }
+    }
+}
+
 function isUnary(array ,i)
 {
 
@@ -429,6 +457,18 @@ function findEm(array, opPos) {
 
 function prepareInput(array, i) {
     array[i] = "";
+}
+
+function isNumberToken(isNum)
+{
+    if(typeof isNum === "number")
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 function isNumber(isNum) {
@@ -507,10 +547,39 @@ function verify() {
 
     for (let i = 0; i < input.length; i++) {
         if (isOperator(input[i]) && isOperator(input[i + 1])) {
-            console.log("CONSECUTIVE:", input[i], input[i + 1], "POS:", i);
-            document.getElementById("result").innerText = "You can't put two consecutive operators!";
-            return false;
+            let op1 = input[i]
+            let op2 = input[i + 1]
+            if(op1 == op2)
+            {
+                console.log("CONSECUTIVE:", input[i], input[i + 1], "POS:", i);
+                document.getElementById("result").innerText = "You can't put two consecutive operators!";
+                console.log("RUA!")
+                return false;
+            }
+            if(op1 == "+" && op2 == "*")
+            {
+                console.log("ILLEGAL PLACEMENT:", input[i], input[i + 1], "POS:", i);
+                document.getElementById("result").innerText = "Your operators are in an invalid context";
+                console.log("RUA!")
+                return false;
+            }
+            if(op1 == "/" && op2 == "%")
+            {
+                console.log("ILLEGAL PLACEMENT:", input[i], input[i + 1], "POS:", i);
+                document.getElementById("result").innerText = "Your operators are in an invalid context";
+                console.log("RUA!")
+                return false;
+            }
+            if(op1 == "^" && op2 == "*")
+            {
+                console.log("ILLEGAL PLACEMENT:", input[i], input[i + 1], "POS:", i);
+                document.getElementById("result").innerText = "Your operators are in an invalid context";
+                console.log("RUA!")
+                return false;
+            }
+
         }
+
     }
     return true;
 }
