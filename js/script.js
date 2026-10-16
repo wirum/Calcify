@@ -110,6 +110,7 @@ function tokenizer() {
             console.log(`Y: ${y}`)
             console.log(`USED STATE: ${used}`)
             console.log(`CLEAN INPUT: ${cleanInput}`)
+            console.log(isUnary(cleanInput, y))
             if (used) {
                 cleanInput[y] = parseFloat(cleanInput[y])
                 y++;
@@ -310,6 +311,21 @@ function isParenthesis(char) {
     return false;
 }
 
+function isUnary(array, pos)
+{
+    if(pos == 0)
+    {
+        return true;
+    }
+
+    let previous = array[pos - 1]
+    
+    if(isNumber(previous) || previous == ")")
+    {
+        return false;
+    }
+    return true;
+}
 function joinEm(array) {
     let open = 0;
     let close = 0;
