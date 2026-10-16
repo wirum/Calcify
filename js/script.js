@@ -55,21 +55,24 @@ function calculate() {
         let originalInput = input;
 
         tokenizer();
+        if(verifyExpression(cleanInput))
+        {
+            if (!isZero) 
+            {
+                calcHistory(originalInput, result);
 
-        if (!isZero) {
-            calcHistory(originalInput, result);
-
-            document.getElementById("result").innerText = `Result: ${result}`;
-            document.querySelector(".HowTo").style.display = "block";
-            howTo.push(`${result} = ${result}`);
-            howToHistory = howTo.join("\n");
-            document.getElementById("howTo").innerText = howToHistory;
+                document.getElementById("result").innerText = `Result: ${result}`;
+                document.querySelector(".HowTo").style.display = "block";
+                howTo.push(`${result} = ${result}`);
+                howToHistory = howTo.join("\n");
+                document.getElementById("howTo").innerText = howToHistory;
+            }
+            else if (isZero) 
+            {
+                document.getElementById("result").innerText = "You can't divide by zero you dummy!";
+            }
         }
-        else if (isZero) {
-            document.getElementById("result").innerText = "You can't divide by zero you dummy!";
-        }
-
-    }
+    }   
 }
 
 function tokenizer() {
@@ -202,7 +205,7 @@ function evaluate() {
             result = operation[1][0] % operation[1][2]
         }
         else {
-            error();
+            error("Something went wrong..");
         }
     }
     else if (operation[0] == 3) {
@@ -213,7 +216,7 @@ function evaluate() {
             result = operation[1][0] - operation[1][2]
         }
         else {
-            error();
+            error("Something went wrong..");
         }
     }
     console.log("result:");
@@ -267,6 +270,46 @@ function evaluate() {
 
 }
 
+function verifyExpression(array)
+{
+    let i = 0;
+    let number,operator,parenthesis,unary = false;
+    for (i;i < array.length; i++)
+    { 
+        if (isNumber(array[i]))
+        {
+            number = true;
+        }
+        else if (isOperator(array[i]))
+        {
+            operator = true;
+            if (isUnary(array, i))
+            {
+                unary = true;
+                operator = false;
+            }
+            else
+            {
+                if (i + 1 >= array.length)
+                {
+                    error("Expression is incomplete!")
+                    return false;
+                }
+            }
+        }
+        else if (isParenthesis(array[i]))
+        {
+            parenthesis = true;
+        }
+        else 
+        {   
+            error("Something went wrong..")
+            return false; // teoricamente se chegar um animal aqui, alguma coisa está MUITO errada. E THE TRIO vai ser chamado ao RH
+        }
+    }
+    return true;
+}
+
 function getRidOfTs(array, start, quantity) {
     // arremessa fora os 3 já calculados, chamados no evaluate depois do scan (ninguém gosta deles)
     // nosso assasino de aluguel
@@ -311,20 +354,34 @@ function isParenthesis(char) {
     return false;
 }
 
-function isUnary(array, pos)
-{
-    if(pos == 0)
-    {
-        return true;
+function isParenthesisLog(char) {
+    console.log("PARENTHESIS CHECK:", char);
+    if (char == "(" || char == ")") {
+        return [char];
     }
+    return false;
+}
 
-    let previous = array[pos - 1]
-    
-    if(isNumber(previous) || previous == ")")
+function isUnary(array ,i)
+{
+
+    if (array[i] == "+" || array[i] == "-")
     {
-        return false;
+        if(i == 0)
+        {
+            return true;
+        }
+        let previous = array[i - 1]
+        if (isNumber(previous) || isParenthesisLog(previous) == ")")
+        {
+            return false;
+        }
+        if(isOperator(previous) || isParenthesisLog(previous) == "(")
+        {
+          return true;
+        }
     }
-    return true;
+    return false;
 }
 function joinEm(array) {
     let open = 0;
@@ -468,8 +525,8 @@ function verifyOdd() {
     }
 }
 
-function error() {
-    alert("Algo deu errado..!")
+function error(message) {
+    alert(message)
 }
 
 function clearHowTo() {
