@@ -191,6 +191,10 @@ function evaluate() {
         else if (operation[1][1] == "*") {
             result = operation[1][0] * operation[1][2]
         }
+        else if (operation[1][1] == "%")
+        {
+            result = operation[1][0] % operation[1][2]
+        }
         else {
             error();
         }
@@ -275,7 +279,7 @@ function scan(array) {
         }
     }
     for (i = 0; i < array.length; i++) {
-        if (array[i] == "*" || array[i] == "/") {
+        if (array[i] == "*" || array[i] == "/" || array[i] == "%") {
             return [2, findEm(array, i), i]
         }
     }
@@ -352,7 +356,7 @@ function isNumber(isNum) {
 }
 
 function isOperator(isOpp) {
-    if (isOpp == "+" || isOpp == "-" || isOpp == "*" || isOpp == "/" || isOpp == "^") {
+    if (isOpp == "+" || isOpp == "-" || isOpp == "*" || isOpp == "/" || isOpp == "^" || isOpp == "%") {
         return true;
     }
     else {
