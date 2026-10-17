@@ -128,6 +128,7 @@ function tokenizer() {
             used = true;
         }
     }
+    console.log("RAW TOKENIZER:", cleanInput, "Y:", y, "USED:", used)
     console.log(`joinEm() ${joinEm(cleanInput)}`)
     if (used)
     {
@@ -150,28 +151,29 @@ function tokenizer() {
     console.log("normalized:");
     console.log(cleanInput);
 
-        if(verifyExpression(cleanInput))
+    if(verifyExpression(cleanInput))
+    {
+        if (cleanInput.length === 1) 
         {
-            if (cleanInput.length === 1) 
-            {
-                result = cleanInput[0]
-            }
-            else 
-            {
-                while (cleanInput.length > 1) {
-                    let previousLength = cleanInput.length
+            result = cleanInput[0]
+        }
+        else 
+        {
+            while (cleanInput.length > 1) {
+                let previousLength = cleanInput.length
 
-                    evaluate();
+                evaluate();
 
-                    if (cleanInput.length >= previousLength)
-                    {
-                        error("expression could not be evaluated")
-                        break
-                    }
+                if (cleanInput.length >= previousLength)
+                {
+                    error("expression could not be evaluated")
+                    break
+                    // dont be feisty -5 and your brothers -+5 & +-5 === the evil trio
                 }
             }
         }
     }
+}
 
 
 function evaluate() {
@@ -398,6 +400,18 @@ function isParenthesisLog(char) {
     return false;
 }
 
+function opLogic(array,x,y)
+{
+    if(array[x] == array[y])
+    {
+        return "+"
+    }
+    else
+    {
+        return "-"
+    }
+}
+
 function normalizeUnary(array)
 {
     let changed = false
@@ -410,11 +424,16 @@ function normalizeUnary(array)
         {
             if(array[i + 1] !== undefined)
             {
-                if(isNumber(array[i + 1]))
+                if (array[i + 1] == "+" || array[i+1] == "-")
                 {
-                    array.splice(i,2,parseFloat(array[i] + array[i + 1]));
+                    array.splice(i, 2, opLogic(array, i, i + 1));
                     changed = true;
-                    console.log("AFTER UNARY SPLICE:", array)
+                }
+                else if(isNumberToken(array[i + 1]))
+                {
+                        array.splice(i,2,parseFloat(array[i] + array[i + 1]));
+                        changed = true;
+                        console.log("AFTER UNARY SPLICE:", array)
                 }
             }
         }
