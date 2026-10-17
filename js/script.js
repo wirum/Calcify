@@ -389,18 +389,35 @@ function isParenthesisLog(char) {
 
 function normalizeUnary(array)
 {
+    let changed = false
     let i = 0
-    for (i;i < array.length; i++)
+    while(i < array.length)
     {
+        changed = false;
+        console.log("NORMALIZE:", array, "I:", i, "TOKEN:", array[i])
         if(isUnary(array, i))
         {
             if(array[i + 1] !== undefined)
             {
                 if(isNumber(array[i + 1]))
                 {
-                    array.splice(i,2,parseFloat(array[i] + array[i + 1]))
+                    array.splice(i,2,parseFloat(array[i] + array[i + 1]));
+                    changed = true;
+                    console.log("AFTER UNARY SPLICE:", array)
                 }
             }
+        }
+        if(changed)
+        {
+            if (i > 0)
+            {
+                i--
+            }
+
+        }
+        else
+        {
+            i++
         }
     }
 }
