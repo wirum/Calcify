@@ -187,6 +187,18 @@ function evaluate() {
         parPos = [operation[1][0], operation[1][1]]
         operation = cleanInput.slice(operation[1][0] + 1, operation[1][1])
         parLength = operation.length
+
+        if(parLength == 1)
+        {
+            result = operation[0]
+            getRidOfTs(cleanInput, parPos[0], 3)
+            parEval = ""
+            evalUsed = false
+            parPos = []
+
+            return;
+        }
+
         parEval = scan(operation)
         evalUsed = true;
         evaluate()
@@ -332,6 +344,7 @@ function getRidOfTs(array, start, quantity) {
 
 function scan(array) {
     let i
+    console.log("SCAN RECEIVED:", array);
     for (i = 0; i < array.length; i++) {
         if (array[i] == "(") {
             return [0, joinEm(array), i]
@@ -341,11 +354,13 @@ function scan(array) {
     {
         if(array[i] == "^") 
         {
+            console.log("SCAN FOUND POWER:", array[i], "AT:", i);
             return [1, findEm(array,i), i]
         }
     }
     for (i = 0; i < array.length; i++) {
         if (array[i] == "*" || array[i] == "/" || array[i] == "%") {
+            console.log("SCAN FOUND MD%:", array[i], "AT:", i);
             return [2, findEm(array, i), i]
         }
     }
