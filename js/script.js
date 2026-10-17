@@ -40,10 +40,51 @@ function showMe() {
     }
 }
 
-function steps(nums, res) {
-    howTo.push(`${nums} = ${res}`);
+function renderHowTo()
+{
+    let howToElement = document.getElementById("howTo")
+    howToElement.innerHTML = ""
+    for(let frame of howTo)
+    {
+        //let line = document.createElement.("div")
+        console.log(frame)
+        console.log("FRAME:", frame)
+        console.log("EXPRESSION:", frame.expression)
+        for (let i = 0; i < frame.expression.length; i++)
+        {
+            console.log(i, frame.expression[i])
+            if(i >= frame.start && i <= frame.end)
+            {
+                console.log("ACTIVE:", frame.expression[i])
+                tokenElement.classList.add("active-step")
+            }
+        }
+        line.appendChild(tokenElement)
+    }
+    howToElement.appendChild(line)
+}
+
+function steps(expression, start, end, res) {
+    /*howTo.push(`${nums} = ${res}`);
     howToHistory = howTo.join("\n");
-    document.getElementById("howTo").innerText = howToHistory;
+    document.getElementById("howTo").innerText = howToHistory;*/
+    console.log("📸:", expression)
+    console.log("START:", start)
+    console.log("END:", end)
+    console.log("RESULT:", res)
+
+    let frame = 
+    {
+        expression,
+        start,
+        end,
+        result: res
+    }
+
+    howTo.push(frame)
+    
+    console.log(frame)
+    
 }
 
 function calculate() {
@@ -61,9 +102,10 @@ function calculate() {
 
             document.getElementById("result").innerText = `Result: ${result}`;
             document.querySelector(".HowTo").style.display = "block";
-            howTo.push(`${result} = ${result}`);
-            howToHistory = howTo.join("\n");
-            document.getElementById("howTo").innerText = howToHistory;
+            //howTo.push(`${result} = ${result}`);
+            //howToHistory = howTo.join("\n");
+            //document.getElementById("howTo").innerText = howToHistory;
+            renderHowTo()
         }
         else if (isZero) 
         {
@@ -262,8 +304,12 @@ function evaluate() {
     if (evalUsed == true) {
         if (parLength == 3) {
             parEval = ""
-            steps(operation[1].join(""), result)
-            getRidOfTs(cleanInput, parPos[0], 5)
+            //steps(operation[1].join(""), result) old lil bro
+            console.log("HOWTO PAR STATE:", cleanInput)
+            console.log("HOWTO PAR START:", parPos[0])
+            console.log("HOWTO PAR END:", parPos[1])
+            steps([...cleanInput], parPos[0], parPos[1], result)  //📸 click (antes do get rid assassinar)
+            getRidOfTs(cleanInput, parPos[0], 5) //esse mano aqui desce a rapa 🔪
             evalUsed = false;
             parPos = [];
 
@@ -278,8 +324,10 @@ function evaluate() {
             console.log("operation[2]:", operation[2])
             console.log("parPos[0]:", parPos[0])
             console.log("realPos:", realPos)
-            steps(operation[1].join(""), result)
-            getRidOfTs(cleanInput, realPos, 3)
+            console.log("HOWTO REAL POS:", realPos)
+            //steps(operation[1].join(""), result)
+            steps([...cleanInput], realPos, realPos + 2, result) // 📸 click
+            getRidOfTs(cleanInput, realPos, 3) // 🔪 *som dramático de faca*
             parPos[1] -= 2
             console.log("parPos:", parPos)
 
@@ -294,9 +342,15 @@ function evaluate() {
         }
     }
     else {
-        steps(operation[1].join(""), result)
-        getRidOfTs(cleanInput, pos, 3)
+        console.log("HOWTO STATE:", cleanInput)
+        console.log("HOWTO OP POS:", operation[2])
+        console.log("HOWTO START:", operation[2] - 1)
+        console.log("HOWTO BROS:", operation[1])
+        //steps(operation[1].join(""), result)
+        steps([...cleanInput], operation[2]-1, operation[2] + 1, result) // 📸 click
+        getRidOfTs(cleanInput, pos, 3) // 🔪 *jack estripador intensifies*
         parEval = ""
+        
     }
 
     console.log("depois do getRidOfTs:");
