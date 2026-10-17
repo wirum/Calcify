@@ -138,8 +138,10 @@ function tokenizer() {
 
     /*Millennium Bug
     Born: 16/10/2026
-    Killed: 16/10/2026
+    Killed: 17/10/2026
 
+
+    he appeared again on  17/10 (:cry:)
     Cause of death: normalizeUnary()
     RAM consumed during lifetime: regrettable*/
     // -5 is now, remarkably, just -5.
@@ -147,20 +149,29 @@ function tokenizer() {
 
     console.log("normalized:");
     console.log(cleanInput);
-    if(verifyExpression(cleanInput))
-    {
-        if (cleanInput.length === 1) 
+
+        if(verifyExpression(cleanInput))
         {
-            result = cleanInput[0]
-        }
-        else 
-        {
-            while (cleanInput.length > 1) {
-                evaluate();
+            if (cleanInput.length === 1) 
+            {
+                result = cleanInput[0]
+            }
+            else 
+            {
+                while (cleanInput.length > 1) {
+                    let previousLength = cleanInput.length
+
+                    evaluate();
+
+                    if (cleanInput.length >= previousLength)
+                    {
+                        error("expression could not be evaluated")
+                        break
+                    }
+                }
             }
         }
     }
-}
 
 
 function evaluate() {
