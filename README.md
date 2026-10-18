@@ -1,16 +1,23 @@
 # Calcify
 
-A JavaScript calculator with the simple operations and a copy and history function.
+A browser-based JavaScript calculator built from scratch, featuring a custom expression evaluator, calculation history, step-by-step explanations, and more.
+
+Calcify started as a simple calculator and eventually became a much bigger project with its own tokenizer and expression evaluation logic, built without using `eval()`.
 
 ## Features
 
 - Basic arithmetic operations
 - Power and remainder operations
+- Operator precedence
+- Parentheses and nested parentheses
+- Unary positive and negative numbers
+- Custom expression tokenizer and evaluator
+- Step-by-step calculation with **HowTo**
 - Odd/even checker
 - Calculation history
-- Persistent history using localStorage
-- Copy result and history to clipboard
-- Decimal support
+- Persistent history using `localStorage`
+- Copy results and history to clipboard
+- Decimal support, including decimal commas
 - Responsive layout
 
 ## Technologies
@@ -19,29 +26,74 @@ A JavaScript calculator with the simple operations and a copy and history functi
 - CSS
 - JavaScript
 
+No frameworks are required. The expression evaluator was built from scratch in JavaScript without using `eval()`.
+
 ## How to use
 
-Type in the input spaces the two values and click one of the operation symbols, then voilà, your result.
+Type the expression you want to Calcify and click the calculate button. Your result will be displayed along with the option to view the calculation step by step using **HowTo**.
 
-There's also the Odd or Even checker, put in the number you want and then click "Check!", your result will be under the text field.
+For example:
+
+`2*(3+4)-5`
+
+Calcify evaluates the expression following operator precedence and parentheses:
+
+`2*(3+4)-5`  
+`2*7-5`  
+`14-5`  
+`9`
+
+There's also an **Odd or Even checker**. Enter a number and click **Check!** to see the result.
 
 ## Screenshots
 
-![Calcify screenshot](assets/images/Current.png)
-![Mobile Experience](assets/images/MobileExperience.png)
+### Current V2
+
+![CalcifyV2 screenshot](assets/images/Current.png)
+![MobileV2 Experience](assets/images/MobileExperienceV2.png)
+
+### Past versions
+
+![CalcifyV1 screenshot](assets/images/V1.png)
+![MobileV1 Experience](assets/images/MobileExperience.png)
 ![First Version](assets/images/FirstVersion.png)
+
+
+
 
 ## What I learned
 
-Learnt in practice JS (which I hadn't used before!), used APIs for clipboard, learned about alerts, functions, syntax, value treatment.. a lot of stuff.. haha..
+I learned **JavaScript in practice**, which I hadn't really used before! I worked with APIs such as the **Clipboard API**, and learned about alerts, functions, syntax, value handling, and a lot more... haha.
 
-Also practiced a bit of CSS responsiveness (which I hadn't used much before.).
+I also practiced a bit of **responsive CSS**, which I hadn't worked with much before.
 
-I already had a lot of previous experience with HTML, so nothing that new.
+I already had a lot of previous experience with **HTML**, so there wasn't that much new for me there.
+
+With **V2**, I learned **SO MUCH STUFF**. I had to build an entire expression-evaluation system to avoid using `eval()`. I basically made my own evaluator... hah.
+
+> *(help, I barely knew JavaScript two weeks ago)*
 
 ## Running locally
 
-To run, you can download the project files and open the index.html, or you can use the website ([Click here!](https://wirum.github.io/Calcify/)).
+You can clone or download the project and open `index.html` in your browser.
+
+You can also use the live version here:
+
+[Open Calcify](https://wirum.github.io/Calcify/)
+
+## Versions
+
+### V1
+
+The first complete version of Calcify, featuring basic arithmetic operations, power and remainder, an odd/even checker, calculation history, `localStorage` persistence, clipboard support, input validation, and a responsive interface.
+
+### V2
+
+A major rewrite of the calculator engine.
+
+V2 introduced a single-expression input and a custom evaluation system with tokenization, operator precedence, nested parentheses, unary operators, right-associative exponentiation, and the visual **HowTo** system.
+
+The evaluator was built manually instead of relying on JavaScript's `eval()`.
 
 ## License
 
