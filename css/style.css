@@ -15,6 +15,10 @@ body{
     font-variation-settings: "wdth" 100;
 }
 
+.active-step {
+    color: #ff9f43;
+}
+
 .result
 {
     border: 2px solid wheat;

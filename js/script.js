@@ -46,22 +46,28 @@ function renderHowTo()
     howToElement.innerHTML = ""
     for(let frame of howTo)
     {
-        //let line = document.createElement.("div")
+        let line = document.createElement("div")
         console.log(frame)
         console.log("FRAME:", frame)
         console.log("EXPRESSION:", frame.expression)
         for (let i = 0; i < frame.expression.length; i++)
         {
+            let tokenElement = document.createElement("span")
+            tokenElement.innerText = frame.expression[i]
             console.log(i, frame.expression[i])
             if(i >= frame.start && i <= frame.end)
             {
                 console.log("ACTIVE:", frame.expression[i])
                 tokenElement.classList.add("active-step")
+                
             }
-        }
-        line.appendChild(tokenElement)
+            line.appendChild(tokenElement)
+        }howToElement.appendChild(line)
+        
     }
-    howToElement.appendChild(line)
+    let finalLine = document.createElement("div")
+    finalLine.innerText = howTo[howTo.length - 1].result    
+    howToElement.appendChild(finalLine)
 }
 
 function steps(expression, start, end, res) {
