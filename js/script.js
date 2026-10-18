@@ -32,52 +32,55 @@ function loadHistory() {
 function showMe() {
     if (click == 0) {
         document.getElementById("howTo").style.display = "block";
-        click++
+        click++;
     }
     else {
         document.getElementById("howTo").style.display = "none";
-        click = 0
+        click = 0;
     }
 }
 
 function renderHowTo()
 {
-    let howToElement = document.getElementById("howTo")
-    howToElement.innerHTML = ""
+    let howToElement = document.getElementById("howTo");
+    howToElement.innerHTML = "";
     for(let frame of howTo)
     {
-        let line = document.createElement("div")
-        console.log(frame)
-        console.log("FRAME:", frame)
-        console.log("EXPRESSION:", frame.expression)
+        let line = document.createElement("div");
+        console.log(frame);
+        console.log("FRAME:", frame);
+        console.log("EXPRESSION:", frame.expression);
         for (let i = 0; i < frame.expression.length; i++)
         {
-            let tokenElement = document.createElement("span")
-            tokenElement.innerText = frame.expression[i]
-            console.log(i, frame.expression[i])
+            let tokenElement = document.createElement("span");
+            tokenElement.innerText = frame.expression[i];
+            console.log(i, frame.expression[i]);
             if(i >= frame.start && i <= frame.end)
             {
-                console.log("ACTIVE:", frame.expression[i])
-                tokenElement.classList.add("active-step")
+                console.log("ACTIVE:", frame.expression[i]);
+                tokenElement.classList.add("active-step");
                 
             }
-            line.appendChild(tokenElement)
-        }howToElement.appendChild(line)
+            line.appendChild(tokenElement);
+        }howToElement.appendChild(line);
         
     }
-    let finalLine = document.createElement("div")
-    finalLine.innerText = howTo[howTo.length - 1].result    
-    howToElement.appendChild(finalLine)
+    if(howTo.length > 0)
+    {
+        let finalLine = document.createElement("div");
+        finalLine.innerText = howTo[howTo.length - 1].result;
+        howToElement.appendChild(finalLine);
+    }
 }
 
 function steps(expression, start, end, res) {
     /*howTo.push(`${nums} = ${res}`);
     howToHistory = howTo.join("\n");
     document.getElementById("howTo").innerText = howToHistory;*/
-    console.log("📸:", expression)
-    console.log("START:", start)
-    console.log("END:", end)
-    console.log("RESULT:", res)
+    console.log("📸:", expression);
+    console.log("START:", start);
+    console.log("END:", end);
+    console.log("RESULT:", res);
 
     let frame = 
     {
@@ -87,16 +90,16 @@ function steps(expression, start, end, res) {
         result: res
     }
 
-    howTo.push(frame)
+    howTo.push(frame);
     
-    console.log(frame)
+    console.log(frame);
     
 }
 
 function calculate() {
-    clearHowTo()
+    clearHowTo();
     read();
-    isZero = false
+    isZero = false;
 
     if (verify() == true) {
         let originalInput = input;
@@ -111,7 +114,7 @@ function calculate() {
             //howTo.push(`${result} = ${result}`);
             //howToHistory = howTo.join("\n");
             //document.getElementById("howTo").innerText = howToHistory;
-            renderHowTo()
+            renderHowTo();
         }
         else if (isZero) 
         {
@@ -121,7 +124,7 @@ function calculate() {
 }
 
 function tokenizer() {
-    clearInput()
+    clearInput();
     let used = false;
     let y = 0;
     let currentNumber = "";
@@ -133,54 +136,54 @@ function tokenizer() {
         currentNumber = input[i]
         if (isParenthesis(currentNumber)) {
             if (currentNumber == "(") {
-                cleanInput[y] = currentNumber
-                y++
+                cleanInput[y] = currentNumber;
+                y++;
                 used = false;
             }
             else if (currentNumber == ")") {
                 if(used)
                 {
-                    cleanInput[y] = parseFloat(cleanInput[y])
-                    y++
+                    cleanInput[y] = parseFloat(cleanInput[y]);
+                    y++;
                 }
-                cleanInput[y] = currentNumber
-                y++
+                cleanInput[y] = currentNumber;
+                y++;
                 used = false;
             }
 
         }
         else if (isNumber(currentNumber)) {
-            cleanInput[y] += currentNumber
+            cleanInput[y] += currentNumber;
             used = true;
         }
         else if (isOperator(currentNumber)) {
-            console.log("IS OPERATOR")
-            console.log(`Y: ${y}`)
-            console.log(`USED STATE: ${used}`)
-            console.log(`CLEAN INPUT: ${cleanInput}`)
-            console.log(isUnary(cleanInput, y))
+            console.log("IS OPERATOR");
+            console.log(`Y: ${y}`);
+            console.log(`USED STATE: ${used}`);
+            console.log(`CLEAN INPUT: ${cleanInput}`);
+            console.log(isUnary(cleanInput, y));
             if (used) {
-                cleanInput[y] = parseFloat(cleanInput[y])
+                cleanInput[y] = parseFloat(cleanInput[y]);
                 y++;
                 prepareInput(cleanInput, y);
             }
-            cleanInput[y] = currentNumber
+            cleanInput[y] = currentNumber;
             y++;
             used = false;
         }
         else if (isDecimal(currentNumber)) {
             if (currentNumber == ",") {
-                currentNumber = "."
+                currentNumber = ".";
             }
-            cleanInput[y] += currentNumber
+            cleanInput[y] += currentNumber;
             used = true;
         }
     }
-    console.log("RAW TOKENIZER:", cleanInput, "Y:", y, "USED:", used)
-    console.log(`joinEm() ${joinEm(cleanInput)}`)
+    console.log("RAW TOKENIZER:", cleanInput, "Y:", y, "USED:", used);
+    console.log(`joinEm() ${joinEm(cleanInput)}`);
     if (used)
     {
-        cleanInput[y] = parseFloat(cleanInput[y])
+        cleanInput[y] = parseFloat(cleanInput[y]);
     }
     console.log("tokenizer:");
     console.log(cleanInput);
@@ -194,7 +197,7 @@ function tokenizer() {
     Cause of death: normalizeUnary()
     RAM consumed during lifetime: regrettable*/
     // -5 is now, remarkably, just -5.
-    normalizeUnary(cleanInput)
+    normalizeUnary(cleanInput);
 
     console.log("normalized:");
     console.log(cleanInput);
@@ -203,19 +206,19 @@ function tokenizer() {
     {
         if (cleanInput.length === 1) 
         {
-            result = cleanInput[0]
+            result = cleanInput[0];
         }
         else 
         {
             while (cleanInput.length > 1) {
-                let previousLength = cleanInput.length
+                let previousLength = cleanInput.length;
 
                 evaluate();
 
                 if (cleanInput.length >= previousLength)
                 {
-                    error("expression could not be evaluated")
-                    break
+                    error("expression could not be evaluated");
+                    break;
                     // dont be feisty -5 and your brothers -+5 & +-5 === the evil trio
                 }
             }
@@ -225,9 +228,9 @@ function tokenizer() {
 
 
 function evaluate() {
-    let y = 0
-    let x = 0
-    let z = 0
+    let y = 0;
+    let x = 0;
+    let z = 0;
     let used = false;   
     let num1, num2 = 0;
     let operation
@@ -235,57 +238,57 @@ function evaluate() {
     //for(let i = 0; i < length.length; i++)
     {*/
     if (parEval == "") {
-        parEval = scan(cleanInput)
+        parEval = scan(cleanInput);
     }
     operation = parEval;
 
     console.log("scan:");
     console.log(operation);
-    let pos = operation[2]
-    pos--
+    let pos = operation[2];
+    pos--;
     console.log(operation);
     if (operation[0] == 0 && !evalUsed) {
-        parPos = [operation[1][0], operation[1][1]]
-        operation = cleanInput.slice(operation[1][0] + 1, operation[1][1])
-        parLength = operation.length
+        parPos = [operation[1][0], operation[1][1]];
+        operation = cleanInput.slice(operation[1][0] + 1, operation[1][1]);
+        parLength = operation.length;
 
         if(parLength == 1)
         {
-            result = operation[0]
-            getRidOfTs(cleanInput, parPos[0], 3)
-            parEval = ""
-            evalUsed = false
-            parPos = []
+            result = operation[0];
+            getRidOfTs(cleanInput, parPos[0], 3);
+            parEval = "";
+            evalUsed = false;
+            parPos = [];
 
             return;
         }
 
-        parEval = scan(operation)
+        parEval = scan(operation);
         evalUsed = true;
-        evaluate()
+        evaluate();
         return;
     }
     else if (operation[0] == 1 && operation[1][1] == "^")
     {
-        console.log("POWER:", operation[1])
-        result = operation[1][0] ** operation [1][2]
+        console.log("POWER:", operation[1]);
+        result = operation[1][0] ** operation [1][2];
     }
     else if (operation[0] == 2) {
         if (operation[1][1] == "/") {
             if (operation[1][2] == 0) {
-                isZero = true
+                isZero = true;
                 return;
             }
             else {
-                result = operation[1][0] / operation[1][2]
+                result = operation[1][0] / operation[1][2];
             }
         }
         else if (operation[1][1] == "*") {
-            result = operation[1][0] * operation[1][2]
+            result = operation[1][0] * operation[1][2];
         }
         else if (operation[1][1] == "%")
         {
-            result = operation[1][0] % operation[1][2]
+            result = operation[1][0] % operation[1][2];
         }
         else {
             error("Something went wrong..");
@@ -293,10 +296,10 @@ function evaluate() {
     }
     else if (operation[0] == 3) {
         if (operation[1][1] == "+") {
-            result = operation[1][0] + operation[1][2]
+            result = operation[1][0] + operation[1][2];
         }
         else if (operation[1][1] == "-") {
-            result = operation[1][0] - operation[1][2]
+            result = operation[1][0] - operation[1][2];
         }
         else {
             error("Something went wrong..");
@@ -304,58 +307,58 @@ function evaluate() {
     }
     console.log("result:");
     console.log(result);
-    console.log("evalUsed:", evalUsed)
-    console.log("parLength:", parLength)
-    console.log("parPos:", parPos)
+    console.log("evalUsed:", evalUsed);
+    console.log("parLength:", parLength);
+    console.log("parPos:", parPos);
     if (evalUsed == true) {
         if (parLength == 3) {
             parEval = ""
             //steps(operation[1].join(""), result) old lil bro
-            console.log("HOWTO PAR STATE:", cleanInput)
-            console.log("HOWTO PAR START:", parPos[0])
-            console.log("HOWTO PAR END:", parPos[1])
-            steps([...cleanInput], parPos[0], parPos[1], result)  //📸 click (antes do get rid assassinar)
-            getRidOfTs(cleanInput, parPos[0], 5) //esse mano aqui desce a rapa 🔪
+            console.log("HOWTO PAR STATE:", cleanInput);
+            console.log("HOWTO PAR START:", parPos[0]);
+            console.log("HOWTO PAR END:", parPos[1]);
+            steps([...cleanInput], parPos[0], parPos[1], result) ; //📸 click (antes do get rid assassinar)
+            getRidOfTs(cleanInput, parPos[0], 5);//esse mano aqui desce a rapa 🔪
             evalUsed = false;
             parPos = [];
 
-            console.log("RESET:")
-            console.log("evalUsed:", evalUsed)
-            console.log("parEval:", parEval)
-            console.log("parPos:", parPos)
+            console.log("RESET:");
+            console.log("evalUsed:", evalUsed);
+            console.log("parEval:", parEval);
+            console.log("parPos:", parPos);
         }
         else {
-            let realPos = parPos[0] + operation[2]
+            let realPos = parPos[0] + operation[2];
 
-            console.log("operation[2]:", operation[2])
-            console.log("parPos[0]:", parPos[0])
-            console.log("realPos:", realPos)
-            console.log("HOWTO REAL POS:", realPos)
+            console.log("operation[2]:", operation[2]);
+            console.log("parPos[0]:", parPos[0]);
+            console.log("realPos:", realPos);
+            console.log("HOWTO REAL POS:", realPos);
             //steps(operation[1].join(""), result)
-            steps([...cleanInput], realPos, realPos + 2, result) // 📸 click
-            getRidOfTs(cleanInput, realPos, 3) // 🔪 *som dramático de faca*
-            parPos[1] -= 2
-            console.log("parPos:", parPos)
+            steps([...cleanInput], realPos, realPos + 2, result); // 📸 click
+            getRidOfTs(cleanInput, realPos, 3); // 🔪 *som dramático de faca*
+            parPos[1] -= 2;
+            console.log("parPos:", parPos);
 
-            let newPar = cleanInput.slice(parPos[0]+1,parPos[1])
-            parLength = newPar.length
+            let newPar = cleanInput.slice(parPos[0]+1,parPos[1]);
+            parLength = newPar.length;
 
-            parEval = scan(newPar)
+            parEval = scan(newPar);
 
-            console.log("NEW PAR:", newPar)
-            console.log("NEW LENGTH:", parLength)
-            console.log("NEW EVAL:", parEval)
+            console.log("NEW PAR:", newPar);
+            console.log("NEW LENGTH:", parLength);
+            console.log("NEW EVAL:", parEval);
         }
     }
     else {
-        console.log("HOWTO STATE:", cleanInput)
-        console.log("HOWTO OP POS:", operation[2])
-        console.log("HOWTO START:", operation[2] - 1)
-        console.log("HOWTO BROS:", operation[1])
-        //steps(operation[1].join(""), result)
-        steps([...cleanInput], operation[2]-1, operation[2] + 1, result) // 📸 click
-        getRidOfTs(cleanInput, pos, 3) // 🔪 *jack estripador intensifies*
-        parEval = ""
+        console.log("HOWTO STATE:", cleanInput);
+        console.log("HOWTO OP POS:", operation[2]);
+        console.log("HOWTO START:", operation[2] - 1);
+        console.log("HOWTO BROS:", operation[1]);
+        //steps(operation[1].join(""), result);
+        steps([...cleanInput], operation[2]-1, operation[2] + 1, result); // 📸 click
+        getRidOfTs(cleanInput, pos, 3); // 🔪 *jack estripador intensifies*
+        parEval = "";
         
     }
 
@@ -387,7 +390,7 @@ function verifyExpression(array)
             {
                 if (i + 1 >= array.length)
                 {
-                    error("Expression is incomplete!")
+                    error("Expression is incomplete!");
                     return false;
                 }
             }
@@ -398,7 +401,7 @@ function verifyExpression(array)
         }
         else 
         {   
-            error("Something went wrong..")
+            error("Something went wrong..");
             return false; // teoricamente se chegar um animal aqui, alguma coisa está MUITO errada. E THE TRIO vai ser chamado ao RH
         }
     }
@@ -408,11 +411,11 @@ function verifyExpression(array)
 function getRidOfTs(array, start, quantity) {
     // arremessa fora os 3 já calculados, chamados no evaluate depois do scan (ninguém gosta deles)
     // nosso assasino de aluguel
-    let notaproblem = ""
-    let problemtofix = array
-    let problem = problemtofix.splice(start, quantity, result)
-    notaproblem = problemtofix
-    return notaproblem//anymore;
+    let notaproblem = "";
+    let problemtofix = array;
+    let problem = problemtofix.splice(start, quantity, result);
+    notaproblem = problemtofix;
+    return notaproblem;//anymore
 }
 
 function scan(array) {
@@ -420,7 +423,7 @@ function scan(array) {
     console.log("SCAN RECEIVED:", array);
     for (i = 0; i < array.length; i++) {
         if (array[i] == "(") {
-            return [0, joinEm(array), i]
+            return [0, joinEm(array), i];
         }
     }
     for(i = array.length-1; i>= 0; i--)
@@ -428,18 +431,18 @@ function scan(array) {
         if(array[i] == "^") 
         {
             console.log("SCAN FOUND POWER:", array[i], "AT:", i);
-            return [1, findEm(array,i), i]
+            return [1, findEm(array,i), i];
         }
     }
     for (i = 0; i < array.length; i++) {
         if (array[i] == "*" || array[i] == "/" || array[i] == "%") {
             console.log("SCAN FOUND MD%:", array[i], "AT:", i);
-            return [2, findEm(array, i), i]
+            return [2, findEm(array, i), i];
         }
     }
     for (i = 0; i < array.length; i++) {
         if (array[i] == "+" || array[i] == "-") {
-            return [3, findEm(array, i), i]
+            return [3, findEm(array, i), i];
         }
     }
 }
@@ -464,22 +467,22 @@ function opLogic(array,x,y)
 {
     if(array[x] == array[y])
     {
-        return "+"
+        return "+";
     }
     else
     {
-        return "-"
+        return "-";
     }
 }
 
 function normalizeUnary(array)
 {
-    let changed = false
-    let i = 0
+    let changed = false;
+    let i = 0;
     while(i < array.length)
     {
         changed = false;
-        console.log("NORMALIZE:", array, "I:", i, "TOKEN:", array[i])
+        console.log("NORMALIZE:", array, "I:", i, "TOKEN:", array[i]);
         if(isUnary(array, i))
         {
             if(array[i + 1] !== undefined)
@@ -493,7 +496,7 @@ function normalizeUnary(array)
                 {
                         array.splice(i,2,parseFloat(array[i] + array[i + 1]));
                         changed = true;
-                        console.log("AFTER UNARY SPLICE:", array)
+                        console.log("AFTER UNARY SPLICE:", array);
                 }
             }
         }
@@ -501,13 +504,13 @@ function normalizeUnary(array)
         {
             if (i > 0)
             {
-                i--
+                i--;
             }
 
         }
         else
         {
-            i++
+            i++;
         }
     }
 }
@@ -539,21 +542,21 @@ function joinEm(array) {
 
     for (let i = 0; array.length > i; i++) {
         if (array[i] == "(") {
-            open = i
+            open = i;
         }
         else if (array[i] == ")") {
-            close = i
-            return [open, close]
+            close = i;
+            return [open, close];
         }
     }
 }
 
 function findEmWhere(array, opPos) {
-    let lilbro = opPos
-    let middlebro = opPos
-    let bigbro = opPos
-    lilbro--
-    bigbro++
+    let lilbro = opPos;
+    let middlebro = opPos;
+    let bigbro = opPos;
+    lilbro--;
+    bigbro++;
     return [lilbro, middlebro, bigbro];
 }
 
@@ -566,14 +569,14 @@ function findEmWhere(array, opPos) {
 
 
 function findEm(array, opPos) {
-    let lilbro = opPos // load-bearing variable
-    let middlebro = opPos
-    let bigbro = opPos
-    lilbro-- //lil
-    bigbro++ //not lil  
-    lilbro = array[lilbro]
-    middlebro = array[middlebro]
-    bigbro = array[bigbro]
+    let lilbro = opPos; // load-bearing variable
+    let middlebro = opPos;
+    let bigbro = opPos;
+    lilbro--; //lil
+    bigbro++; //not lil  
+    lilbro = array[lilbro];
+    middlebro = array[middlebro];
+    bigbro = array[bigbro];
     return [lilbro, middlebro, bigbro]; //the trio
 }
 
@@ -669,34 +672,34 @@ function verify() {
 
     for (let i = 0; i < input.length; i++) {
         if (isOperator(input[i]) && isOperator(input[i + 1])) {
-            let op1 = input[i]
-            let op2 = input[i + 1]
+            let op1 = input[i];
+            let op2 = input[i + 1];
             if(op1 == op2)
             {
                 console.log("CONSECUTIVE:", input[i], input[i + 1], "POS:", i);
                 document.getElementById("result").innerText = "You can't put two consecutive operators!";
-                console.log("RUA!")
+                console.log("RUA!");
                 return false;
             }
             if(op1 == "+" && op2 == "*")
             {
                 console.log("ILLEGAL PLACEMENT:", input[i], input[i + 1], "POS:", i);
                 document.getElementById("result").innerText = "Your operators are in an invalid context";
-                console.log("RUA!")
+                console.log("RUA!");
                 return false;
             }
             if(op1 == "/" && op2 == "%")
             {
                 console.log("ILLEGAL PLACEMENT:", input[i], input[i + 1], "POS:", i);
                 document.getElementById("result").innerText = "Your operators are in an invalid context";
-                console.log("RUA!")
+                console.log("RUA!");
                 return false;
             }
             if(op1 == "^" && op2 == "*")
             {
                 console.log("ILLEGAL PLACEMENT:", input[i], input[i + 1], "POS:", i);
                 document.getElementById("result").innerText = "Your operators are in an invalid context";
-                console.log("RUA!")
+                console.log("RUA!");
                 return false;
             }
 
@@ -717,7 +720,7 @@ function verifyOdd() {
 }
 
 function error(message) {
-    alert(message)
+    alert(message);
 }
 
 function clearHowTo() {
