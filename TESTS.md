@@ -48,23 +48,44 @@
 ## HowTo
 
 ### Basic
-- [ ] 2 + 2 = 4
-- [ ] 10 - 3 = 7
-- [ ] 4 * 5 = 20
-- [ ] 20 / 4 = 5
+- [x] 2 + 2 = 4
+- [x] 10 - 3 = 7
+- [x] 4 * 5 = 20
+- [x] 20 / 4 = 5
 
 ### Precedence
-- [ ] 2 + 3 * 4 = 14
-- [ ] 10 - 2 * 3 = 4
-- [ ] 2 * 3 + 4 = 10
-- [ ] 2 ^ 3 + 1 = 9
-- [ ] 10 % 3 + 2 = 3
+- [x] 2 + 3 * 4 = 14
+- [x] 10 - 2 * 3 = 4
+- [x] 2 * 3 + 4 = 10
+- [x] 2 ^ 3 + 1 = 9
+- [x] 10 % 3 + 2 = 3
 
 ### Parentheses 
-- [ ] (2+3) * 4 = 20
-- [ ] 2 * (3 + 4) = 14
-- [ ] ((2 + 3) * 2) = 10
-- [ ] 2 + (3 * 4)
+- [x] (2+3) * 4 = 20
+- [x] 2 * (3 + 4) = 14
+- [x] ((2 + 3) * 2) = 10
+- [x] 2 + (3 * 4) - 5 = 9
+
+### Negative numbers
+- [x] -5 + 3 = -2
+- [x] 5 + -3 = 2
+- [x] -5 * -2 = 10
+- [x] -10 / 2 = -5
+
+### Decimals
+- [x] 1.5 + 2.5 = 4
+- [x] 10.5 / 2 = 5.25
+- [x] 0.1 + 0.2 = 0.3
+
+### For every test
+- [x] Final result is correct
+- [x] Correct operation is highlighted
+- [x] Operation order is correct
+- [x] No step is skipped
+- [x] No duplicated step
+- [x] No `undefined`
+- [x] No `NaN`
+- [x] No weird highlight range
 
 ## State recovery in depth
 
