@@ -9,7 +9,7 @@
 - [ ] Test every operation
 - [ ] Final engine cleanup
 - [ ] Freeze Calcify V3 engine
-- [ ] Revamp the overral look
+- [ ] Revamp the overall look
 
 ## Terra Tools — Hub
 - [ ] Create landing page
