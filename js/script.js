@@ -97,9 +97,9 @@ function steps(expression, start, end, res) {
 }
 
 function calculate() {
+    resetEngine();
     clearHowTo();
     read();
-    isZero = false;
 
     if (verify() == true) {
         let originalInput = input;
@@ -743,6 +743,17 @@ function clearAll() {
     cleanInput = [];
     operations = [];
     historytext = [""];
+}
+
+function  resetEngine()
+{
+    cleanInput = [];
+    result = 0;
+    isZero = false;
+    parEval = "";
+    evalUsed = false;
+    parLength = 0;
+    parPos = [];
 }
 
 function clearInput() {
