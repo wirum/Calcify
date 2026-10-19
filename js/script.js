@@ -706,6 +706,32 @@ function verify() {
         }
 
     }
+
+    let parentheses = 0;
+    for(let i = 0; i < input.length; i++)
+    {
+        if(input[i] === "(")
+        {
+            parentheses++;
+        }
+        else if (input[i] === ")")
+        {
+            parentheses--;
+
+            if(parentheses < 0)
+            {
+                document.getElementById("result").innerText = "Unbalanced parentheses!";
+            
+                return false;
+            }
+        }
+    }
+    if(parentheses !== 0)
+    {
+        document.getElementById("result").innerText = "Unbalanced parentheses!";
+        return false;   
+    }
+
     return true;
 }
 
