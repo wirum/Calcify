@@ -46,11 +46,25 @@
 - [x] Returns 4 normally = retorna erro de eval (fix)
 
 ## HowTo
-For each valid test above: (esqueci de fazer ::cry:)
-- [ ] Open HowTo
-- [ ] Final result matches calculator
-- [ ] Steps match the expression
-- [ ] No missing/undefined/NaN values
+
+### Basic
+- [ ] 2 + 2 = 4
+- [ ] 10 - 3 = 7
+- [ ] 4 * 5 = 20
+- [ ] 20 / 4 = 5
+
+### Precedence
+- [ ] 2 + 3 * 4 = 14
+- [ ] 10 - 2 * 3 = 4
+- [ ] 2 * 3 + 4 = 10
+- [ ] 2 ^ 3 + 1 = 9
+- [ ] 10 % 3 + 2 = 3
+
+### Parentheses 
+- [ ] (2+3) * 4 = 20
+- [ ] 2 * (3 + 4) = 14
+- [ ] ((2 + 3) * 2) = 10
+- [ ] 2 + (3 * 4)
 
 ## State recovery in depth
 
@@ -66,3 +80,4 @@ For each valid test above: (esqueci de fazer ::cry:)
 - [x] 0.3 - 0.2 → 0.1
 - [x] 1 / 3 → 0.333333333333333
 - [x] 10.5 / 2 → 5.25
+
