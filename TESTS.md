@@ -35,15 +35,15 @@
 - [x] 0 / 0 -> error
 - [x] 2 ++ 3 -> error
 - [x] 5 * -> error
-- [⚠] (2 + 3 -> Deu erro de divisão por zero..????
-- [⚠] 2 + 3) -> Deu erro de divisão por zero..????
+- [x] (2 + 3 -> Deu erro de divisão por zero..????  (Fix)
+- [x] 2 + 3) -> Deu erro de divisão por zero..???? (Fix)
 - [x] Empty input -> handled
 
 ## State recovery
 1. Run an invalid expression
 2. Receive the error
 3. Immediately calculate `2 + 2`
-- [⚠] Returns 4 normally = retorna erro de eval
+- [x] Returns 4 normally = retorna erro de eval (fix)
 
 ## HowTo
 For each valid test above: (esqueci de fazer ::cry:)
@@ -57,5 +57,5 @@ For each valid test above: (esqueci de fazer ::cry:)
 - [x] 10 / 0 → error → 2 + 2 (fixed)
 - [x] 2 ++ 3 → error → 2 + 2 
 - [x] 5 * → error → 2 + 2 
-- [1⚠] (2 + 3 → error → 2 + 2 (partial fix, agora ele não tá mostrando erro mais funciona o 2+2)
-- [1⚠] 2 + 3) → error → 2 + 2  (partial fix, agora ele não tá mostrando erro mais funciona o 2+2)
+- [x] (2 + 3 → error → 2 + 2 (fix)
+- [x] 2 + 3) → error → 2 + 2  (fix)
