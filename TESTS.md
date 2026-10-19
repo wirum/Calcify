@@ -59,3 +59,10 @@ For each valid test above: (esqueci de fazer ::cry:)
 - [x] 5 * → error → 2 + 2 
 - [x] (2 + 3 → error → 2 + 2 (fix)
 - [x] 2 + 3) → error → 2 + 2  (fix)
+
+## Floating point tests
+- [x] 0.1 + 0.2 → 0.3
+- [x] 0.7 + 0.1 → 0.8
+- [x] 0.3 - 0.2 → 0.1
+- [x] 1 / 3 → 0.333333333333333
+- [x] 10.5 / 2 → 5.25

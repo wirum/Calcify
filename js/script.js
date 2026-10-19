@@ -228,15 +228,7 @@ function tokenizer() {
 
 
 function evaluate() {
-    let y = 0;
-    let x = 0;
-    let z = 0;
-    let used = false;   
-    let num1, num2 = 0;
     let operation
-    /*let length = scan(cleanInput)
-    //for(let i = 0; i < length.length; i++)
-    {*/
     if (parEval == "") {
         parEval = scan(cleanInput);
     }
@@ -255,6 +247,7 @@ function evaluate() {
         if(parLength == 1)
         {
             result = operation[0];
+            result = cleanFloat(result)
             getRidOfTs(cleanInput, parPos[0], 3);
             parEval = "";
             evalUsed = false;
@@ -272,6 +265,7 @@ function evaluate() {
     {
         console.log("POWER:", operation[1]);
         result = operation[1][0] ** operation [1][2];
+        result = cleanFloat(result)
     }
     else if (operation[0] == 2) {
         if (operation[1][1] == "/") {
@@ -281,14 +275,17 @@ function evaluate() {
             }
             else {
                 result = operation[1][0] / operation[1][2];
+                result = cleanFloat(result)
             }
         }
         else if (operation[1][1] == "*") {
             result = operation[1][0] * operation[1][2];
+            result = cleanFloat(result)
         }
         else if (operation[1][1] == "%")
         {
             result = operation[1][0] % operation[1][2];
+            result = cleanFloat(result)
         }
         else {
             error("Something went wrong..");
@@ -297,9 +294,11 @@ function evaluate() {
     else if (operation[0] == 3) {
         if (operation[1][1] == "+") {
             result = operation[1][0] + operation[1][2];
+            result = cleanFloat(result)
         }
         else if (operation[1][1] == "-") {
             result = operation[1][0] - operation[1][2];
+            result = cleanFloat(result)
         }
         else {
             error("Something went wrong..");
@@ -791,6 +790,16 @@ function clearHistory() {
     document.getElementById("calcHistory").innerText = "";
     calchistory = [];
     localStorage.removeItem("history");
+}
+
+function cleanFloat(value)
+{
+    if (!Number.isFinite(value))
+    {
+        return value;
+    }
+
+    return Number.parseFloat(value.toPrecision(15));
 }
 
 function add() {
