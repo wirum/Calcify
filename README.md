@@ -47,15 +47,17 @@ There's also an **Odd or Even checker**. Enter a number and click **Check!** to 
 
 ## Screenshots
 
-### Current V2
+### Current V3
 
-![CalcifyV2 screenshot](assets/images/Current.png)
-![MobileV2 Experience](assets/images/MobileExperienceV2.png)
+![CalcifyV3 screenshot](assets/images/Current.png)
+![MobileV3 Experience](assets/images/MobileExperienceV3.png)
 
 ### Past versions
 
+![CalcifyV2 screenshot](assets/images/V2.png)
+![MobileV2 Experience](assets/images/MobileExperienceV2.png)
 ![CalcifyV1 screenshot](assets/images/V1.png)
-![MobileV1 Experience](assets/images/MobileExperience.png)
+![MobileV1 Experience](assets/images/MobileExperienceV1.png)
 ![First Version](assets/images/FirstVersion.png)
 
 
@@ -94,6 +96,8 @@ A major rewrite of the calculator engine.
 V2 introduced a single-expression input and a custom evaluation system with tokenization, operator precedence, nested parentheses, unary operators, right-associative exponentiation, and the visual **HowTo** system.
 
 The evaluator was built manually instead of relying on JavaScript's `eval()`.
+
+### V3
 
 ## License
 
