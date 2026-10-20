@@ -11,15 +11,6 @@
 - [x] Freeze Calcify V3 engine
 - [x] Revamp the overall look 
 
-## Terra Tools — Hub
-- [ ] Create landing page
-- [ ] Create tool cards
-- [ ] Add Calcify
-- [ ] Add Odd or Even
-- [ ] Create navigation
-- [ ] Make responsive
-- [ ] Define Terra visual identity
-
 ## Graph (integrated with terra tracker also)
 - [ ] Manual data input
 - [ ] Line chart

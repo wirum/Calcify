@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+
+:root{
+    --background: #0c1220;
+    --surface: #131b2e;
+    --text: #edf1ff;
+
+    --accent: #74d9d0;
+    --secondary: #b5a2fc;
+    --border: #293553;
+
+    scrollbar-gutter: auto;
+}
+
+body{
+    background-color: var(--background);
+    color: var(--text);
+
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+header{
+    color: var(--text);
+
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+.hero{
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero h1{
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 700;
+}
+
+.hero-description{
+    color: #aab3c5;
+    max-width: 500px;
+    font-size: 1.2rem;
+}
