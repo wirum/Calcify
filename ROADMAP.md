@@ -1,15 +1,15 @@
 # Calcify. — Terra Tools Roadmap
 
 ## Main objective: V3 — Calcify V2 wrap up
-- [ ] Review current engine
-- [ ] Map existing operations
-- [ ] Fix known bugs
-- [ ] Refactor duplicated logic
-- [ ] Improve validations
-- [ ] Test every operation
-- [ ] Final engine cleanup
-- [ ] Freeze Calcify V3 engine
-- [ ] Revamp the overall look
+- [x] Review current engine
+- [x] Map existing operations
+- [x] Fix known bugs
+- ~~[ ] Refactor duplicated logic~~
+- [x] Improve validations
+- [x] Test every operation (tried to lol)
+- [x] Final engine cleanup
+- [x] Freeze Calcify V3 engine
+- [ ] Revamp the overall look --> Now
 
 ## Terra Tools — Hub
 - [ ] Create landing page
