@@ -13,7 +13,7 @@
 
 ## Fast Tools — Hub
 - [x] Create landing page
-- [ ] Create tool cards
+- [x] Create tool cards
 - [ ] Add Calcify
 - [ ] Add Odd or Even
 - [ ] Create navigation
@@ -52,7 +52,7 @@
 - [ ] Sync daily hours
 - [ ] Handle API errors
 
-## Chrono / Timer (integrate with terra tracker)
+## Chrono / Timer (integrate with terra tracker(i think))
 - [ ] Stopwatch
 - [ ] Timer
 - [ ] Pomodoro

@@ -37,6 +37,7 @@ header{
     min-height: 70vh;
     display: flex;
     align-items: center;
+    background-color: #131b2e;
 }
 
 .hero h1{
@@ -48,4 +49,156 @@ header{
     color: #aab3c5;
     max-width: 500px;
     font-size: 1.2rem;
+}
+
+.tools-section{
+    padding: 100px 0;
+}
+
+.tools-section h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+}
+
+.tool-card {
+    height: 100%;
+    padding: 28px;
+
+    background-color: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    transition: 0.2s ease;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.tool-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+}
+
+.tool-card h3 {
+    margin-top: 18px;
+    font-weight: 600;
+}
+
+.tool-card p {
+    opacity: 0.7;
+}
+
+.tool-card a {
+    display: inline-block;
+    color: var(--accent);
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.tool-card a:hover {
+    transform: translateX(8px);
+    font-weight: 500;
+    color:#caf5f1;
+}
+
+.tool-content {
+    position: relative;
+    overflow: hidden;
+}
+
+.calcify-art {
+    position: absolute;
+    right: 55px;
+    top: 50%;
+
+    display: flex;
+    align-items: center;
+    gap:28px;
+
+    transform: translateY(-50%);
+
+    font-size: 4.8rem;
+    font-weight: bold;
+
+    color: var(--accent);
+    opacity: 0.09;
+
+    pointer-events: none;
+
+    transition: 0.25 ease;
+}
+
+.calcify-art span {
+    display: inline-block;
+    transition: 0.25 ease;
+}
+
+.tool-card:hover .calcify-art {
+    opacity: 0.16;
+}
+
+.plus {
+    transform:
+        rotate(-20deg)
+        translate(-8px, -14px);
+}
+
+.minus {
+    transform:
+        rotate(9deg)
+        translate(4px, 35px)
+        scale(1.15);
+}
+
+.multiply {
+    transform:
+        rotate(-22deg)
+        translate(5px, -30px);
+}
+
+.divide {
+    transform:
+        rotate(16deg)
+        translate(-4px, 20px)
+        scale(0.95);
+}
+
+.parenthesis {
+    transform:
+        rotate(-12deg)
+        translate(12px, -40px)
+        scale(1.2);
+}
+
+.odd-art {
+    position: absolute;
+
+    right: 70px;
+    top: 50px;
+
+    transform: translateY(-50%);
+
+    font-size: 7rem;
+    color: var(--accent);
+    opacity: 0.09;
+
+    pointer-events: none;
+
+    transition: 0.25 ease;
+}
+
+.sign-icon {
+    display: inline-block;
+
+    transform: rotate(-13deg) translate(10px, 60px) scale(1.5);
+
+    transition: 0.25 ease;
+}
+
+.tool-card:hover .odd-art {
+    opacity: 0.16;
+}
+
+.tool-card:hover .sign-icon {
+    transform: rotate(-8deg) translate(10px, 2px), scale(1.17);
 }
