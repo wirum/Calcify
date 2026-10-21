@@ -37,7 +37,7 @@ header{
     min-height: 70vh;
     display: flex;
     align-items: center;
-    background-color: #131b2e;
+    margin: 2rem;
 }
 
 .hero h1{

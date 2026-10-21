@@ -14,8 +14,8 @@
 ## Fast Tools — Hub
 - [x] Create landing page
 - [x] Create tool cards
-- [ ] Add Calcify
-- [ ] Add Odd or Even
+- [x] Add Calcify
+- [x] Add Odd or Even
 - [ ] Create navigation
 - [ ] Make responsive
 - [ ] Define Terra visual identity
