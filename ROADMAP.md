@@ -16,9 +16,32 @@
 - [x] Create tool cards
 - [x] Add Calcify
 - [x] Add Odd or Even
-- [ ] Create navigation
-- [ ] Make responsive
-- [ ] Define Terra visual identity
+- [x] Create navigation
+- [x] Make responsive
+- [x] Define Terra visual identity
+
+### Hub polish
+- [x] Create About section
+- [x] Create footer
+- [-] Add tool background artwork (the two first ones :fire:)
+- [x] Improve card interactions (its good alreadly)
+- [ ] Add active/disabled states for unavailable tools
+- [ ] Improve mobile navigation
+- [ ] Test tablet layout
+- [ ] Test small-screen layout
+- [ ] Improve accessibility
+- [ ] Add keyboard navigation/focus states
+- [ ] Add page metadata/favicon
+- [ ] Add smooth section navigation
+- [ ] Final visual consistency pass
+
+### Calcify integration
+- [ ] Review Calcify link/integration
+- [ ] Separate reusable engine logic
+- [ ] Prepare shared JS structure
+- [ ] Move Odd or Even into Fast Tools
+- [ ] Reuse Calcify logic where possible
+- [ ] Test shared scripts
 
 ## Graph (integrated with terra tracker also)
 - [ ] Manual data input

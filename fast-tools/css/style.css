@@ -40,6 +40,10 @@ header{
     margin: 2rem;
 }
 
+.main-hero {
+    background-color: #121a2c;
+}
+
 .hero h1{
     font-size: clamp(3rem, 7vw, 6rem);
     font-weight: 700;
@@ -184,7 +188,7 @@ header{
 
     pointer-events: none;
 
-    transition: 0.25 ease;
+    transition: 0.25s ease;
 }
 
 .sign-icon {
@@ -192,7 +196,7 @@ header{
 
     transform: rotate(-13deg) translate(10px, 60px) scale(1.5);
 
-    transition: 0.25 ease;
+    transition: 0.25s ease;
 }
 
 .tool-card:hover .odd-art {
@@ -201,4 +205,39 @@ header{
 
 .tool-card:hover .sign-icon {
     transform: rotate(-8deg) translate(10px, 2px), scale(1.17);
+}
+
+.about-section h2 {
+    font-weight: 700;
+}
+
+.about-section h3 {
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+
+footer {
+    margin-top: 5rem;
+}
+
+footer a {
+    color: var(--text);
+}
+
+footer .border-bottom {
+    border-color: var(--text);
+}
+
+.nav-link:hover {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.nav-link{
+    color: var(--text);
+    transition: 0.2s ease;
+}
+
+.navbar .bi::before {
+    margin-top: 3.5px;
 }

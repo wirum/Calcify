@@ -99,6 +99,16 @@ The evaluator was built manually instead of relying on JavaScript's `eval()`.
 
 ### V3
 
+## Fast Tools Visual Identity
+
+- Dark navy background
+- Cyan primary accent
+- Lavender secondary accent
+- Bricolage Grotesque
+- Rounded cards
+- Low-opacity thematic background art
+- Subtle hover movement
+
 ## License
 
 MIT License.
