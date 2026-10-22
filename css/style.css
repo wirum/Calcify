@@ -143,6 +143,11 @@ input:focus
     margin: 0.2rem auto;
 }
 
+.mobile-keypad{
+    display:none;   
+}
+
+
 @media (max-width: 600px) 
 {
     main
@@ -160,5 +165,18 @@ input:focus
     .operators
     {
         align-items: center;
+    }
+    .mobile-keypad {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 12px;
+    }
+
+    .mobile-keypad button {
+        min-height: 48px;
     }
 }

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="stylesheet" href="css/style.css" />
-  <script src="js/script.js"></script>
+  <script src="js/script.js" defer></script>
 
   <title>Calcify V3</title>
 </head>
@@ -26,6 +26,34 @@
       <p>Write down your expression</p>
 
       <input type="text" id="Input" name="Input">
+
+      <div class="mobile-keypad">
+        <button class="key" data-value="7">7</button>
+        <button class="key" data-value="8">8</button>
+        <button class="key" data-value="9">9</button>
+        <button class="key" data-value="/">÷</button>
+
+        <button class="key" data-value="4">4</button>
+        <button class="key" data-value="5">5</button>
+        <button class="key" data-value="6">6</button>  <!--holy buttons 😭 -->
+        <button class="key" data-value="*">×</button>
+
+        <button class="key" data-value="1">1</button>
+        <button class="key" data-value="2">2</button>
+        <button class="key" data-value="3">3</button>
+        <button class="key" data-value="-">-</button>
+
+        <button class="key" data-value="0">0</button>
+        <button class="key" data-value=".">.</button>
+        <button class="key" data-value="(">(</button>
+        <button class="key" data-value=")">)</button>
+
+        <button class="key" data-value="^">^</button>
+        <button class="key" data-value="%">mod</button>
+        <button class="key" data-value="+">+</button>
+
+        <button class="key delete-key">DEL</button>
+      </div>
 
       <div class="operators">
         <button onclick="calculate()"> Calcify </button>
