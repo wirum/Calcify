@@ -39,7 +39,7 @@
 - [ ] Review Calcify link/integration
 - [ ] Separate reusable engine logic
 - [ ] Prepare shared JS structure
-- [ ] Move Odd or Even into Fast Tools
+- [x] Move Odd or Even into Fast Tools
 - [ ] Reuse Calcify logic where possible
 - [ ] Test shared scripts
 
@@ -86,4 +86,3 @@
 - [ ] texts.md
 - [ ] NovaWeather page
 - [ ] MyKeyLED page
-- [ ] Terra Tools page
