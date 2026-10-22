@@ -23,16 +23,16 @@
 ### Hub polish
 - [x] Create About section
 - [x] Create footer
-- [-] Add tool background artwork (the two first ones :fire:)
+- [x] Add tool background artwork (finished the trio)
 - [x] Improve card interactions (its good alreadly)
-- [ ] Add active/disabled states for unavailable tools
-- [ ] Improve mobile navigation
-- [ ] Test tablet layout
-- [ ] Test small-screen layout
+- [x] Add active/disabled states for unavailable tools
+- [x] Improve mobile navigation
+- [x] Test tablet layout
+- [x] Test small-screen layout
 - [ ] Improve accessibility
 - [ ] Add keyboard navigation/focus states
 - [ ] Add page metadata/favicon
-- [ ] Add smooth section navigation
+- [x] Add smooth section navigation
 - [ ] Final visual consistency pass
 
 ### Calcify integration
