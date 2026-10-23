@@ -814,3 +814,18 @@ function oddOreven() {
     }
 
 }
+
+const inputField = document.getElementById("Input");
+const deleteKey = document.querySelector(".delete-key");
+
+if (inputField && deleteKey) {
+    document.querySelectorAll(".key[data-value]").forEach(button => {
+        button.addEventListener("click", () => {
+            inputField.value += button.dataset.value;
+        });
+    });
+
+    deleteKey.addEventListener("click", () => {
+        inputField.value = inputField.value.slice(0, -1);
+    });
+}
