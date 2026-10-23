@@ -12,6 +12,8 @@ let evalUsed = false;
 let parLength = 0;
 let parPos = [];
 
+
+
 window.addEventListener("load", loadHistory);
 
 function loadHistory() {
@@ -524,13 +526,13 @@ function isDecimal(isDec) {
 
 function copyResult() {
     navigator.clipboard.writeText(result);
-    alert("Copiado!");
+    document.getElementById("copyResult").innerText = "Copied!";
 }
 
 function copyHistory() {
     let historytext = calchistory.join("\n");
     navigator.clipboard.writeText(historytext);
-    alert("Copiado!");
+    document.getElementById("copyHistory").innerText = "Copied!";
 }
 
 
@@ -543,6 +545,8 @@ function calcHistory(nums, res) {
 
 function read() {
     input = document.getElementById("Input").value;
+
+    input = input.replaceAll("×", "*").replaceAll("÷", "/")
 }
 
 function readOdd() {
@@ -552,9 +556,33 @@ function readOdd() {
 
 function verify() {
 
+    let invalidChars = [];
+
     if (input.trim() == "" || isOperator(input[input.length - 1])) {
         document.getElementById("result").innerText = "You forgot an value..";
         return false;
+    }
+
+    for(let i = 0; i < input.length; i++)
+    {
+        const char = input[i];
+
+        if(char.trim() === "") {
+            continue;
+        }
+
+        if (
+            !isNumber(char) &&
+            !isOperator(char) &&
+            !isDecimal(char) &&
+            !isParenthesis(char)
+        ) {
+            invalidChars.push(char);
+        }
+    }
+
+    if(invalidChars.length > 0) {
+        alert(`These characters will be ingored: ${invalidChars.join(", ")}`);
     }
 
     for (let i = 0; i < input.length; i++) {

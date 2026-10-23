@@ -64,6 +64,7 @@ body{
 
 #howTo {
     display: none;
+    overflow-wrap: anywhere;
 }
 
 .HowTo
@@ -71,10 +72,14 @@ body{
     display: none;
     position: absolute;
     top: 75px;
-    right: 200px;
+    left: 35%;
+    right: auto;
     padding: 20px;
     border-radius: 15px;
     margin-bottom: 2rem;
+
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .History
