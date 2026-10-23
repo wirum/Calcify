@@ -1,14 +1,11 @@
 let result = 0;
 let click = 0
 let input = 0;
-let input1 = 0;
 let oddeven = 0;
 let calchistory = [];
 let howTo = [];
-let howToHistory = "";
 let historytext = "";
 let cleanInput = [];
-let operations = [];
 let isZero = false;
 let parEval = "";
 let evalUsed = false;
@@ -87,7 +84,7 @@ function calculate() {
     clearHowTo();
     read();
 
-    if (verify() == true) {
+    if (verify()) {
         let originalInput = input;
 
         tokenizer();
@@ -99,7 +96,7 @@ function calculate() {
             document.querySelector(".HowTo").style.display = "block";
             renderHowTo();
         }
-        else if (isZero) 
+        else
         {
             document.getElementById("result").innerText = "You can't divide by zero you dummy!";
         }
@@ -113,7 +110,7 @@ function tokenizer() {
     let currentNumber = "";
     read();
     for (let i = 0; i < input.length; i++) {
-        if (used == false) {
+        if (!used) {
             prepareInput(cleanInput, y);
         }
         currentNumber = input[i]
@@ -215,8 +212,7 @@ function evaluate() {
 
         if(parLength == 1)
         {
-            result = operation[0];
-            result = cleanFloat(result)
+            result = cleanFloat(operation[0]);
             getRidOfTs(cleanInput, parPos[0], 3);
             parEval = "";
             evalUsed = false;
@@ -232,8 +228,7 @@ function evaluate() {
     }
     else if (operation[0] == 1 && operation[1][1] == "^")
     {
-        result = operation[1][0] ** operation [1][2];
-        result = cleanFloat(result)
+        result = cleanFloat(operation[1][0] ** operation [1][2])
     }
     else if (operation[0] == 2) {
         if (operation[1][1] == "/") {
@@ -242,18 +237,15 @@ function evaluate() {
                 return;
             }
             else {
-                result = operation[1][0] / operation[1][2];
-                result = cleanFloat(result)
+                result = cleanFloat(operation[1][0] / operation[1][2]);
             }
         }
         else if (operation[1][1] == "*") {
-            result = operation[1][0] * operation[1][2];
-            result = cleanFloat(result)
+            result = cleanFloat(operation[1][0] * operation[1][2]);
         }
         else if (operation[1][1] == "%")
         {
-            result = operation[1][0] % operation[1][2];
-            result = cleanFloat(result)
+            result = cleanFloat(operation[1][0] % operation[1][2]);
         }
         else {
             error("Something went wrong..");
@@ -261,18 +253,15 @@ function evaluate() {
     }
     else if (operation[0] == 3) {
         if (operation[1][1] == "+") {
-            result = operation[1][0] + operation[1][2];
-            result = cleanFloat(result)
+            result = cleanFloat(operation[1][0] + operation[1][2]);
         }
         else if (operation[1][1] == "-") {
-            result = operation[1][0] - operation[1][2];
-            result = cleanFloat(result)
-        }
+            result = cleanFloat(operation[1][0] - operation[1][2]);        }
         else {
             error("Something went wrong..");
         }
     }
-    if (evalUsed == true) {
+    if (evalUsed) {
         if (parLength == 3) {
             parEval = ""
             steps([...cleanInput], parPos[0], parPos[1], result) ; //📸 click (antes do get rid assassinar)
@@ -305,21 +294,17 @@ function evaluate() {
 
 function verifyExpression(array)
 {
-    let i = 0;
-    let number,operator,parenthesis,unary = false;
-    for (i;i < array.length; i++)
+    for (let i = 0; i < array.length; i++)
     { 
         if (isNumberToken(array[i]))
         {
-            number = true;
+            continue;
         }
         else if (isOperator(array[i]))
         {
-            operator = true;
             if (isUnary(array, i))
             {
-                unary = true;
-                operator = false;
+                continue;   
             }
             else
             {
@@ -332,7 +317,7 @@ function verifyExpression(array)
         }
         else if (isParenthesis(array[i]))
         {
-            parenthesis = true;
+            continue;
         }
         else 
         {   
@@ -368,12 +353,12 @@ function scan(array) {
         }
     }
     for (i = 0; i < array.length; i++) {
-        if (array[i] == "*" || array[i] == "/" || array[i] == "%") {
+        if (["*","/","%"].includes(array[i])) {
             return [2, findEm(array, i), i];
         }
     }
     for (i = 0; i < array.length; i++) {
-        if (array[i] == "+" || array[i] == "-") {
+        if (["+", "-"].includes(array[i])) {
             return [3, findEm(array, i), i];
         }
     }
@@ -406,8 +391,8 @@ function opLogic(array,x,y)
 }
 
 function normalizeUnary(array)
-{
-    let changed = false;
+{   
+    let changed;
     let i = 0;
     while(i < array.length)
     {
@@ -525,30 +510,15 @@ function isNumberToken(isNum)
 }
 
 function isNumber(isNum) {
-    if (isNum == "0" || isNum == "1" || isNum == "2" || isNum == "3" || isNum == "4" || isNum == "5" || isNum == "6" || isNum == "7" || isNum == "8" || isNum == "9") {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return ["0" , "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9"].includes(String(isNum));
 }
 
 function isOperator(isOpp) {
-    if (isOpp == "+" || isOpp == "-" || isOpp == "*" || isOpp == "/" || isOpp == "^" || isOpp == "%") {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return ["+" , "-" , "*" , "/" , "^" , "%"].includes(String(isOpp));
 }
 
 function isDecimal(isDec) {
-    if (isDec == "," || isDec == ".") {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return ["," , "."].includes(String(isDec));
 }
 
 
@@ -575,13 +545,6 @@ function read() {
     input = document.getElementById("Input").value;
 }
 
-function converter() {
-    input = input.replace(",", ".");
-    input2 = input2.replace(",", ".");
-    input = Number.parseFloat(input);
-    input2 = Number.parseFloat(input2);
-}
-
 function readOdd() {
     oddeven = document.getElementById("OddOrEven").value;
     oddeven = Number.parseFloat(oddeven);
@@ -603,25 +566,41 @@ function verify() {
                 document.getElementById("result").innerText = "You can't put two consecutive operators!";
                 return false;
             }
-            if(op1 == "+" && op2 == "*")
-            {
-                document.getElementById("result").innerText = "Your operators are in an invalid context";
-                return false;
-            }
-            if(op1 == "/" && op2 == "%")
-            {
-                document.getElementById("result").innerText = "Your operators are in an invalid context";
-                return false;
-            }
-            if(op1 == "^" && op2 == "*")
-            {
-                document.getElementById("result").innerText = "Your operators are in an invalid context";
-                return false;
-            }
+            const invalidPairs = [
+                ["+" , "*"], 
+                ["+" , "/"],
+                ["+" , "%"],
 
-        }
+                ["*" , "/"],
+                ["*" , "%"],
+
+                ["/" , "*"],
+                ["/" , "%"],
+
+                ["^" , "*"],
+                ["^" , "/"],
+                ["^" , "%"],
+            ];
+
+            if (invalidPairs.some(pair =>
+                pair[0] === op1 && pair[1] === op2 
+                
+                /*
+                some = percorre procurando algum true
+                pair => ... = condição que deve dar true
+                
+                achou pelo menos um?   -> true
+                não achou nenhum?      -> false
+                */
+
+            )) {
+                document.getElementById("result").innerText = "Your operators are in an invalid context!"
+
+                return false;
+            }
 
     }
+}
 
     let parentheses = 0;
     for(let i = 0; i < input.length; i++)
@@ -667,7 +646,6 @@ function error(message) {
 
 function clearHowTo() {
     howTo = [];
-    howToHistory = "";
     document.getElementById("howTo").innerText = "";
 }
 
@@ -676,21 +654,18 @@ function clearAll() {
     document.getElementById("Input").value = "";
     document.getElementById("howTo").innerText = "";
 
-    result = 0;
+    resetEngine();
+
     input = 0;
-    input1 = 0;
     calchistory = [];
     howTo = [];
-    howToHistory = "";
-    cleanInput = [];
-    operations = [];
     historytext = [""];
 }
 
 function  resetEngine()
 {
-    cleanInput = [];
-    result = 0;
+    clearInput();
+
     isZero = false;
     parEval = "";
     evalUsed = false;
@@ -718,86 +693,6 @@ function cleanFloat(value)
 
     return Number.parseFloat(value.toPrecision(15));
 }
-
-function add() {
-    read();
-    if (verify()) {
-        result = input1 + input2;
-        document.getElementById("result").innerText = `Result: ${result}`;
-        calcHistory(input, " + ", input2, result);
-    }
-    else {
-        return;
-    }
-}
-function subtract() {
-    read();
-    if (verify()) {
-        result = input - input2;
-        document.getElementById("result").innerText = `Result: ${result}`;
-        calcHistory(input, " - ", input2, result);
-    }
-    else {
-        return;
-    }
-
-}
-function divide() {
-    read();
-    if (verify()) {
-        if (input2 != 0) {
-            result = input / input2;
-            document.getElementById("result").innerText = `Result: ${result}`;
-            calcHistory(input, " / ", input2, result);
-        }
-        else {
-            document.getElementById("result").innerText = "You can't divide by zero!";
-        }
-    }
-}
-function multiply() {
-    read();
-    if (verify()) {
-        result = input * input2;
-        document.getElementById("result").innerText = `Result: ${result}`;
-        calcHistory(input, " * ", input2, result);
-    }
-    else {
-        return;
-    }
-}
-
-function power() {
-    read();
-    if (verify()) {
-        result = input ** input2;
-        document.getElementById("result").innerText = `Result: ${result}`;
-        calcHistory(input, " ** ", input2, result);
-    }
-    else {
-        return;
-    }
-}
-
-function restDivision() {
-    read();
-    if (verify()) {
-        if (input2 != 0) {
-            result = input % input2;
-            document.getElementById("result").innerText = `Result: ${result}`;
-            calcHistory(input, " mod ", input2, result);
-        }
-        else {
-            document.getElementById("result").innerText = "You can't divide by zero!";
-        }
-
-    }
-    else {
-        return;
-    }
-}
-
-
 
 function oddOreven() {
     readOdd();
