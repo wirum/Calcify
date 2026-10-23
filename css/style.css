@@ -133,6 +133,12 @@ button:hover
     cursor: pointer;
 }
 
+button:active
+{
+    color: var(--accent);
+    font-weight: 500;
+}
+
 input:focus
 {
     cursor:text;
@@ -180,5 +186,78 @@ input:focus
 
     .mobile-keypad button {
         min-height: 48px;
+    }
+
+    .HowTo {
+        position: static;
+        box-sizing: border-box;
+        border: 2px solid var(--border);
+        border-radius: 16px;
+        padding: 20px;
+        margin-top: 20px;
+        width: 100%;
+    }
+    
+    .key[data-value="+"],
+    .key[data-value="-"],
+    .key[data-value="/"],
+    .key[data-value="%"],
+    .key[data-value="^"],
+    .key[data-value="*"],
+    .key[data-value="."],
+    .key[data-value=")"],
+    .key[data-value="("]{
+        font-size: 1.4rem
+    }
+
+    .key[data-value="0"],
+    .key[data-value="1"],
+    .key[data-value="2"],
+    .key[data-value="3"],
+    .key[data-value="4"],
+    .key[data-value="5"],
+    .key[data-value="6"],
+    .key[data-value="7"],
+    .key[data-value="8"],
+    .key[data-value="9"]{
+        font-weight: 400;
+        font-size: large;
+    }
+
+    .clear-button{
+        font-weight: 400;
+        font-size: large;
+    }
+
+    .delete-key{
+        font-weight: 400;
+    }
+
+    .calcify-button{
+        font-size: medium;
+    }    
+    .key:active {
+        transform: scale(0.96);
+    }
+
+    .input-row {
+        display: flex;
+        gap:8px;
+    }
+
+    .input-row input {
+        flex: 1;
+        min-width: 0;
+        margin-bottom: 0;
+    }
+
+    .input-row .operators {
+        margin: 0;
+    }
+
+    .clear-main {
+        display: block;
+        margin-left: auto;
+        margin-top: 8px;
     }
 }

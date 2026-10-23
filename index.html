@@ -25,7 +25,14 @@
       <h1>Welcome to Calcify</h1>
       <p>Write down your expression</p>
 
-      <input type="text" id="Input" name="Input">
+      <div class="input-row">
+        <input type="text" id="Input" name="Input">
+
+        <div class="operators">
+          <button class="calcify-button" click="calculate()"> Calcify </button>
+        </div>
+      </div>
+
 
       <div class="mobile-keypad">
         <button class="key" data-value="7">7</button>
@@ -55,10 +62,8 @@
         <button class="key delete-key">DEL</button>
       </div>
 
-      <div class="operators">
-        <button onclick="calculate()"> Calcify </button>
-      </div>
-      <button onclick="clearAll()">Clear</button>
+
+      <button class="clear-button" onclick="clearAll()">Clear</button>
 
       <div class="result" aria-live="polite">
         <h2 id="result">Result: 0</h2>

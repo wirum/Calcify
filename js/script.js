@@ -716,11 +716,52 @@ const deleteKey = document.querySelector(".delete-key");
 if (inputField && deleteKey) {
     document.querySelectorAll(".key[data-value]").forEach(button => {
         button.addEventListener("click", () => {
-            inputField.value += button.dataset.value;
+            const start = inputField.selectionStart;
+            const end = inputField.selectionEnd;
+
+            const before = inputField.value.slice(0,start);
+            const after = inputField.value.slice(end);
+
+            const value = button.dataset.value;
+
+            inputField.value = before + value + after;
+
+            const newPosition = start + value.length;
+
+            inputField.setSelectionRange(newPosition, newPosition);
+            inputField.focus(); //devolve o foco pro input
         });
     });
 
     deleteKey.addEventListener("click", () => {
-        inputField.value = inputField.value.slice(0, -1);
+        const cursorStart= inputField.selectionStart;
+        const cursorEnd = inputField.selectionEnd;
+        // se tiver algum texto selecionado
+        if (cursorStart !== cursorEnd) {
+            
+            const beforeSelection = inputField.value.slice(0, cursorStart);
+            const afterSelection = inputField.value.slice(cursorEnd);
+
+            inputField.value = beforeSelection + afterSelection;
+
+            inputField.setSelectionRange(cursorStart, cursorStart)
+        }
+        // se não tiver seleção apaga o caractere anterior ao cursor
+        else if (cursorStart > 0) {
+
+            const beforeCursor = inputField.value.slice(0, cursorStart -1);
+            const afterCursor = inputField.value.slice(cursorStart);
+
+            inputField.value = beforeCursor + afterCursor;
+
+            const newCursorPosition = cursorStart - 1;
+
+            inputField.setSelectionRange(
+                newCursorPosition,
+                newCursorPosition
+            );
+
+        }
+        inputField.focus(); //devolve o foco pro input
     });
 }
