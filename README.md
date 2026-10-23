@@ -73,13 +73,13 @@ I already had a lot of previous experience with **HTML**, so there wasn't that m
 
 With **V2**, I learned **SO MUCH STUFF**. I had to build an entire expression-evaluation system to avoid using `eval()`. I basically made my own evaluator... hah.
 
-> *(help, I barely knew JavaScript two weeks ago)*
+*(help, I barely knew JavaScript two weeks ago)*
 
 ## Running locally
 
 You can clone or download the project and open `index.html` in your browser.
 
-You can also use the live version here:
+You can also use the live version here: (currently V2)
 
 [Open Calcify](https://wirum.github.io/Calcify/)
 
@@ -97,7 +97,7 @@ V2 introduced a single-expression input and a custom evaluation system with toke
 
 The evaluator was built manually instead of relying on JavaScript's `eval()`.
 
-### V3
+### V3 (to be released)
 
 A full on hub for Calcify engine.
 
