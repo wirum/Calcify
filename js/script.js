@@ -163,9 +163,9 @@ function verify() {
 
 
 
-    /*----------------------/
-   /   INPUT PROCESSING    /
-  /----------------------*/
+  /*----------------------/
+ /   INPUT PROCESSING    /
+/----------------------*/
 
 
 function tokenizer() {
@@ -380,9 +380,11 @@ function verifyExpression(array)
 
 
 
-    /*----------------------/
-   /   TOKEN HELPERS       /
-  /----------------------*/
+  /*----------------------/
+ /   TOKEN HELPERS       /
+/----------------------*/
+
+
 
 function isNumberToken(isNum)
 {
@@ -427,9 +429,12 @@ function isParenthesisLog(char) {
     return false;
 }
 
-    /*----------------------/
-   /   EXPRESSION ENGINE   /
-  /----------------------*/
+
+
+  /*----------------------/
+ /   EXPRESSION ENGINE   /
+/----------------------*/
+
 
   function scan(array) {
     let i
@@ -481,7 +486,6 @@ function joinEm(array) {
 // ISO 2000:2026 - THE BROS Certified
 // "i dont know how it works, just works, and its simply so good astra 6 on ultra couldn't break it." - lucas
 
-
 function findEm(array, opPos) {
     let lilbro = opPos; // load-bearing variable
     let middlebro = opPos;
@@ -493,6 +497,7 @@ function findEm(array, opPos) {
     bigbro = array[bigbro];
     return [lilbro, middlebro, bigbro]; //the trio
 }
+
 
 function evaluate() {
     let operation
@@ -615,9 +620,10 @@ function cleanFloat(value)
 
 
 
-    /*----------------------/
-   /   HOW TO / OUTPUT     /
-  /----------------------*/
+  /*----------------------/
+ /   HOW TO / OUTPUT     /
+/----------------------*/
+
 
 function steps(expression, start, end, res) {
 
@@ -674,13 +680,14 @@ function showMe() {
     }
 }
 
+
 function error(message) {
     alert(message);
 }
 
-    /*----------------------/
-   /   HISTORY / STORAGE   /
-  /----------------------*/
+  /*----------------------/
+ /   HISTORY / STORAGE   /
+/----------------------*/
 
 window.addEventListener("load", loadHistory);
 
@@ -730,9 +737,11 @@ function clearHistory() {
 
 
 
-    /*----------------------/
-   /   RESET / CLEAR       /
-  /----------------------*/
+  /*----------------------/
+ /   RESET / CLEAR       /
+/----------------------*/
+
+
 
 function clearHowTo() {
     howTo = [];
@@ -771,9 +780,11 @@ function clearInput() {
     result = 0;
 }
 
-    /*----------------------/
-   /   ODD OR EVEN         /
-  /----------------------*/
+
+
+   /*----------------------/
+  /   ODD OR EVEN         /
+ /----------------------*/
 
 function readOdd() {
     oddeven = document.getElementById("OddOrEven").value;
@@ -810,9 +821,9 @@ function oddOreven() {
 
 
 
-    /*----------------------/
-   /   MOBILE KEYPAD       /
-  /----------------------*/
+  /*----------------------/
+ /   MOBILE KEYPAD       /
+/----------------------*/
 
 const inputField = document.getElementById("Input");
 const deleteKey = document.querySelector(".delete-key");
@@ -868,7 +879,7 @@ if (inputField && deleteKey) {
         }
         inputField.focus(); //devolve o foco pro input
     });
-    
+
     inputField.addEventListener("keydown", event => {
         if (event.key === "Enter") {
             calculate();
