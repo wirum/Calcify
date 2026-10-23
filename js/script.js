@@ -765,3 +765,9 @@ if (inputField && deleteKey) {
         inputField.focus(); //devolve o foco pro input
     });
 }
+
+inputField.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+        calculate();
+    }
+});

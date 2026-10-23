@@ -26,10 +26,10 @@
       <p>Write down your expression</p>
 
       <div class="input-row">
-        <input type="text" id="Input" name="Input">
+        <input type="text" id="Input" name="Input" aria-label="Calculator expression">
 
         <div class="operators">
-          <button class="calcify-button" click="calculate()"> Calcify </button>
+          <button class="calcify-button" onclick="calculate()"> Calcify </button>
         </div>
       </div>
 
@@ -38,26 +38,26 @@
         <button class="key" data-value="7">7</button>
         <button class="key" data-value="8">8</button>
         <button class="key" data-value="9">9</button>
-        <button class="key" data-value="/">÷</button>
+        <button class="key" data-value="/" aria-label="divide">÷</button>
 
         <button class="key" data-value="4">4</button>
         <button class="key" data-value="5">5</button>
         <button class="key" data-value="6">6</button>  <!--holy buttons 😭 -->
-        <button class="key" data-value="*">×</button>
+        <button class="key" data-value="*" aria-label="multiply">×</button>
 
         <button class="key" data-value="1">1</button>
         <button class="key" data-value="2">2</button>
         <button class="key" data-value="3">3</button>
-        <button class="key" data-value="-">-</button>
+        <button class="key" data-value="-" aria-label="minus">-</button>
 
         <button class="key" data-value="0">0</button>
-        <button class="key" data-value=".">.</button>
-        <button class="key" data-value="(">(</button>
-        <button class="key" data-value=")">)</button>
+        <button class="key" data-value="." aria-label="Decimal point">.</button>
+        <button class="key" data-value="(" aria-label="Open parenthesis">(</button>
+        <button class="key" data-value=")" aria-label="Close parenthesis">)</button>
 
-        <button class="key" data-value="^">^</button>
+        <button class="key" data-value="^" aria-label="power">^</button>
         <button class="key" data-value="%">mod</button>
-        <button class="key" data-value="+">+</button>
+        <button class="key" data-value="+" aria-label="plus">+</button>
 
         <button class="key delete-key">DEL</button>
       </div>
@@ -69,9 +69,6 @@
         <h2 id="result">Result: 0</h2>
         <button onclick="copyResult()">Copy</button>
       </div>
-      <br />
-      <br />
-      <br />
       
       <div class="HowTo">
           <h2>How can I calculate this?</h2>
