@@ -20,7 +20,7 @@
 - [x] Make responsive
 - [x] Define Terra visual identity
 
-### Hub polish
+### Hub polish / Calcifiy
 - [x] Create About section
 - [x] Create footer
 - [x] Add tool background artwork (finished the trio)
@@ -30,7 +30,7 @@
 - [x] Test tablet layout
 - [x] Test small-screen layout
 - [x] Improve accessibility
-- [ ] Add keyboard navigation/focus states
+- [x] Add keyboard navigation/focus states
 - [ ] Add page metadata/favicon
 - [x] Add smooth section navigation
 - [ ] Final visual consistency pass

@@ -149,6 +149,14 @@ input:focus
     cursor:text;
 }
 
+button:focus-visible,
+input:focus-visible,
+a:focus-visible{
+    outline: 3px solid var(--secondary);
+    outline-offset: 3px;
+}
+
+
 .operators
 {
     margin: 0.2rem auto;
