@@ -4,7 +4,7 @@
 - [x] Review current engine
 - [x] Map existing operations
 - [x] Fix known bugs
-- ~~[ ] Refactor duplicated logic~~
+- [x] Refactor duplicated logic
 - [x] Improve validations
 - [x] Test every operation (tried to lol)
 - [x] Final engine cleanup
@@ -29,7 +29,7 @@
 - [x] Improve mobile navigation
 - [x] Test tablet layout
 - [x] Test small-screen layout
-- [ ] Improve accessibility
+- [x] Improve accessibility
 - [ ] Add keyboard navigation/focus states
 - [ ] Add page metadata/favicon
 - [x] Add smooth section navigation

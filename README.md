@@ -103,6 +103,8 @@ A full on hub for Calcify engine.
 
 Made **Fast Tools**, a tiny hub including Calcify, Even or Odd, and Terra Tracker, and to be added more tools, reviewed acessibility, and separated Even or Odd from Calcify
 
+Also reviewed Calcify itself, adding acessibility and more mobile integration. (also new css)
+
 ## Fast Tools Visual Identity
 
 - Dark navy background
