@@ -233,7 +233,7 @@ export const tests = [
     {
         name: "multiple parenthetical groups",
         category: "parentheses",
-        expression: "(1+2)*(3*4)",
+        expression: "(1+2)*(3+4)",
         expected: 21
     },
 
@@ -271,7 +271,7 @@ export const tests = [
         expression: "2.5/2",
         expected: 1.25
     },
-    
+
     {
         name: "decimal multiplication precision",
         category: "precision",
