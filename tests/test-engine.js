@@ -3,6 +3,18 @@ import { tests } from "./test-cases.js";
 let passed = 0;
 let failed = 0;
 
+const originalAlert = window.alert;
+
+window.alert = function(message)
+{
+    if (String(message).toLowerCase().includes("expression could not be evaluated"))
+    {
+        return;
+    }
+
+    originalAlert.call(window, message);
+}
+
 for (const test of tests) {
     const actual = window.CalcifyTest.run(test.expression);
 
@@ -16,3 +28,5 @@ for (const test of tests) {
     }
 }
 console.log(`Resumo: ${passed} passaram, ${failed} falharam`)
+
+window.alert = originalAlert;
