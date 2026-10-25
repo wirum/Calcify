@@ -277,5 +277,160 @@ export const tests = [
         category: "precision",
         expression: "0.2*0.3",
         expected: 0.06
+    },
+
+    {
+        name: "right-associative exponentiaton",
+        category: "precedence",
+        expression: "2^3^2",
+        expected: 512
+    },
+
+    {
+        name: "grouped exponentiaion",
+        category: "parentheses",
+        expression: "(2^3)^2",
+        expected: 64
+    },
+
+    {
+        name: "complex operator precedence",
+        category: "precedence",
+        expression: "3+4*2/(1-5)^2",
+        expected: 3.5
+    },
+
+    {
+        name: "nested groups with exponentiation",
+        category: "parentheses",
+        expression: "((2+3)*(4-1))^2",
+        expected: 225
+    },
+
+    {
+        name: "negative groups multiplication",
+        category: "unary",
+        expression: "-(3+2)*(4-7)",
+        expected: 15
+    },
+
+    {
+        name: "mixed operators with parentheses",
+        category: "precedence",
+        expression: "10-2*(3+4)+8/2",
+        expected: 0
+    },
+
+    {
+        name: "nested groups and division",
+        category: "parentheses",
+        expression: "(8-3)*(2+(8/3))",
+        expected: 20
+    },
+
+    {
+        name: "nested denominator",
+        category: "parentheses",
+        expression: "100/(2*(3+2))",
+        expected: 10
+    },
+
+    {
+        name: "modulo with addition and multiplication",
+        category: "precedence",
+        expression: "7+(18%5)*2",
+        expected: 13
+    },
+
+    {
+        name: "modulo before exponentiation",
+        category: "precedence",
+        expression: "(17%5)^2",
+        expected: 4
+    },
+
+    {
+        name: "multiple exponentiation and multiplication",
+        category: "precedence",
+        expression: "2^3*4^2",
+        expected: 128
+    },
+
+    {
+        name: "division and multiplication left to right",
+        category: "precedence",
+        expression: "48/2*(3+1)",
+        expected: 96
+    },
+
+    {
+        name: "subtraction of negative product",
+        category: "unary",
+        expression: "5--3*2",
+        expected: 11
+    },
+
+    {
+        name: "negative bases with different powers",
+        category: "precedence",
+        expression: "(-3)^2+(-2)^3",
+        expected: 1
+    },
+
+    {
+        name: "negative expoent",
+        category: "parentheses",
+        expression: "2^(-3)",
+        expected: 0.125
+    },
+
+    {
+        name: "negative base and expoent",
+        category: "parentheses",
+        expression: "(-2)^(-3)",
+        expected: -0.125
+    },
+
+    {
+        name: "mixed operations inside exponent",
+        category: "parentheses",
+        expression: "2^(1+2*3)",
+        expected: 128
+    },
+
+    {
+        name: "sum of grouped powers",
+        category: "parentheses",
+        expression: "((1+2)^2+(3+1)^2)",
+        expected: 25
+    },
+
+    {
+        name: "decimal precision through parentheses",
+        category: "precision",
+        expression: "1/(0.1+0.2)*10",
+        expected: 3
+    },
+    
+    {
+        name: "reciprocal of decimal sum",
+        category: "precision",
+        expression: "1/(0.1+0.2)",
+        expected: 3.33333333333333
+    },
+
+    {
+        name: "unary minus versus exponent",
+        category: "precedence",
+        expression: "-3^2",
+        expected: 9
+    },
+
+    {
+        name: "unary minus before grouped exponent",
+        category: "precedence",
+        expression: "-(2+3)^2",
+        expected: -25
     }
+
 ];
