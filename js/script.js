@@ -92,8 +92,18 @@ function verify() {
             let op2 = input[i + 1];
             if(op1 == op2)
             {
-                document.getElementById("result").innerText = "You can't put two consecutive operators!";
-                return false;
+                let previousCharacter = input[i-1];
+
+                let isNegative = false;
+                if(op1 == "-" && op2 == "-")
+                    if(isNumber(previousCharacter) || previousCharacter == ")") {
+                        isNegative = true;
+                    }
+                if (!isNegative)
+                {
+                    document.getElementById("result").innerText = "You can't put two consectutive operators!"
+                    return false;
+                }
             }
             const invalidPairs = [
                 ["+" , "*"], 
