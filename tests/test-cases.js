@@ -423,7 +423,7 @@ export const tests = [
         name: "unary minus versus exponent",
         category: "precedence",
         expression: "-3^2",
-        expected: 9
+        expected: -9
     },
 
     {

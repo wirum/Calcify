@@ -294,15 +294,18 @@ function normalizeUnary(array)
                 }
                 else if(isNumberToken(array[i + 1]))
                 {
-                    if (array[i] == "-")
+                    if(array[i + 2] !== "^")
                     {
-                        array.splice(i,2,Number(array[i + 1]) * -1); //inverte o sinal
+                        if (array[i] == "-")
+                        {
+                            array.splice(i,2,Number(array[i + 1]) * -1); //inverte o sinal
+                        }
+                        else
+                        {
+                            array.splice(i , 2, Number(array[i+1]));
+                        }
+                        changed = true;
                     }
-                    else
-                    {
-                        array.splice(i , 2, Number(array[i+1]));
-                    }
-                    changed = true;
                 }
             }
         }
@@ -612,10 +615,22 @@ function evaluate() {
     else {
         steps([...cleanInput], operation[2]-1, operation[2] + 1, result); // 📸 click
         getRidOfTs(cleanInput, pos, 3); // 🔪 *jack estripador intensifies*
-        parEval = "";
         
-    }
+        let beforeUnary = [...cleanInput];
 
+        normalizeUnary(cleanInput);
+
+        if(cleanInput.length === 1)
+        {
+            result = cleanInput[0];
+
+            if(beforeUnary.length !== cleanInput.length)
+            {
+                steps(beforeUnary, 0 , beforeUnary.length -1, result);
+            }
+        }
+        parEval = "";
+    }
 }
 
 
