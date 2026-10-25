@@ -32,5 +32,68 @@ export const tests = [
         category:"basic",
         expression:"10%3",
         expected: 1
+    },
+
+    {
+        name:"decimal precision",
+        category: "precision",
+        expression: "0.1+0.2",
+        expected: 0.3
+    },
+
+    {
+        name: "division by zero",
+        category: "errors",
+        expression: "10/0",
+        expected: "division-by-zero"
+    },
+
+    {
+        name: "division by zero through parentheses",
+        category: "errors",
+        expression: "10/(5-5)",
+        expected: "division-by-zero"
+    },
+
+    {
+        name: "negative parentheses",
+        category: "unary",
+        expression: "-(2+3)",
+        expected: -5    
+    },
+
+    {
+        name: "binary subtraction with parentheses",
+        category: "unary",
+        expression: "0-(2+3)",
+        expected: -5
+    },
+
+    {
+        name: "unary negative single parentheses",
+        category: "unary",
+        expression: "-2",
+        expected: -2
+    },
+    
+    {
+        name: "unary negative with multiplication in parentheses",
+        category: "unary",
+        expression: "-(2*3)",
+        expected: -6
+    },
+
+    {
+        name: "unary negative with subtraction in parentheses",
+        category: "unary",
+        expression: "-(2-3)",
+        expected: 1
+    },
+
+    {
+        name: "unary negative with division in parentheses",
+        category: "unary",
+        expression: "-(2/1)",
+        expected: -2
     }
 ];

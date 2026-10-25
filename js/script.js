@@ -284,8 +284,15 @@ function normalizeUnary(array)
                 }
                 else if(isNumberToken(array[i + 1]))
                 {
-                        array.splice(i,2,parseFloat(array[i] + array[i + 1]));
-                        changed = true;
+                    if (array[i] == "-")
+                    {
+                        array.splice(i,2,Number(array[i + 1]) * -1); //inverte o sinal
+                    }
+                    else
+                    {
+                        array.splice(i , 2, Number(array[i+1]));
+                    }
+                    changed = true;
                 }
             }
         }
@@ -569,6 +576,12 @@ function evaluate() {
             parEval = ""
             steps([...cleanInput], parPos[0], parPos[1], result) ; //📸 click (antes do get rid assassinar)
             getRidOfTs(cleanInput, parPos[0], 5);//esse mano aqui desce a rapa 🔪
+            normalizeUnary(cleanInput)
+
+            if (cleanInput.length === 1) {
+                result = cleanInput[0];
+            }
+
             evalUsed = false;
             parPos = [];
 
