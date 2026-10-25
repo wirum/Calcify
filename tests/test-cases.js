@@ -72,7 +72,7 @@ export const tests = [
     {
         name: "unary negative single parentheses",
         category: "unary",
-        expression: "-2",
+        expression: "(-2)",
         expected: -2
     },
     
@@ -168,7 +168,7 @@ export const tests = [
     },
 
     {
-        name: "multiple adittions",
+        name: "multiple additions",
         category: "basic",
         expression: "1+2+3",
         expected: 6 
@@ -280,14 +280,14 @@ export const tests = [
     },
 
     {
-        name: "right-associative exponentiaton",
+        name: "right-associative exponentiation",
         category: "precedence",
         expression: "2^3^2",
         expected: 512
     },
 
     {
-        name: "grouped exponentiaion",
+        name: "grouped exponentiation",
         category: "parentheses",
         expression: "(2^3)^2",
         expected: 64
@@ -324,7 +324,7 @@ export const tests = [
     {
         name: "nested groups and division",
         category: "parentheses",
-        expression: "(8-3)*(2+(8/3))",
+        expression: "(8-3)*(2+(6/3))",
         expected: 20
     },
 
@@ -378,14 +378,14 @@ export const tests = [
     },
 
     {
-        name: "negative expoent",
+        name: "negative exponent",
         category: "parentheses",
         expression: "2^(-3)",
         expected: 0.125
     },
 
     {
-        name: "negative base and expoent",
+        name: "negative base and exponent",
         category: "parentheses",
         expression: "(-2)^(-3)",
         expected: -0.125
@@ -408,7 +408,7 @@ export const tests = [
     {
         name: "decimal precision through parentheses",
         category: "precision",
-        expression: "1/(0.1+0.2)*10",
+        expression: "(0.1+0.2)*10",
         expected: 3
     },
     
