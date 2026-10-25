@@ -31,9 +31,9 @@
 - [x] Test small-screen layout
 - [x] Improve accessibility
 - [x] Add keyboard navigation/focus states
-- [ ] Add page metadata/favicon
+- [x] Add page metadata/favicon
 - [x] Add smooth section navigation
-- [ ] Final visual consistency pass
+- [x] Final visual consistency pass
 
 ### Calcify integration
 - [ ] Review Calcify link/integration
